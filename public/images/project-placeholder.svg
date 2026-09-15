@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#d8d2c6"/>
+  <path d="M170 720V350l380-180 480 230v320M350 720V430h250v290M700 720V480h210v240" fill="none" stroke="#52635c" stroke-width="18"/>
+  <text x="600" y="815" text-anchor="middle" font-family="Arial" font-size="34" letter-spacing="12" fill="#52635c">ACONS</text>
+</svg>

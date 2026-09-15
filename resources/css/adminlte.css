@@ -1,0 +1,31 @@
+/*
+ * AdminLTE 4 stylesheet entry point.
+ *
+ * Bundled directly from the official `admin-lte` npm package through Vite.
+ *
+ * Option A (default): import the prebuilt CSS — fastest, no SCSS toolchain.
+ */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'overlayscrollbars/overlayscrollbars.css';
+@import 'admin-lte/dist/css/adminlte.css';
+
+:root {
+  --bs-primary: #1f3a32;
+  --bs-primary-rgb: 31, 58, 50;
+}
+
+.app-sidebar { --lte-sidebar-bg: #14251f; }
+.brand-text { letter-spacing: .08em; }
+.sidebar-brand { border-bottom: 1px solid rgba(255, 255, 255, .08); }
+
+/*
+ * Option B: compile from source to customise SCSS variables. Comment out
+ * the admin-lte CSS import above and use this instead (requires `sass`):
+ *
+ *   // resources/css/adminlte.scss
+ *   $primary: #6610f2;            // your overrides BEFORE the import
+ *   $lte-sidebar-width: 280px;
+ *   @import 'admin-lte/src/scss/adminlte';
+ *
+ * See https://adminlte.io/themes/v4/docs/customization.html
+ */
