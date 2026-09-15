@@ -4,10 +4,49 @@
 
 @php
     $homepageProjects = $projects->take(4)->values();
-    $heroProject = $projects->first(fn ($project) => filled($project->cover_image));
-    $heroImage = $heroProject?->cover_image
-        ? asset('storage/'.$heroProject->cover_image)
-        : asset('images/hero-architecture.svg');
+    $heroProjects = $projects->filter(fn ($project) => filled($project->cover_image))->take(3)->values();
+    $heroFallbackImages = [
+        asset('images/hero-architecture.svg'),
+        asset('images/project-placeholder.svg'),
+        asset('images/hero-architecture.svg'),
+    ];
+    $heroSlides = collect([
+        [
+            'eyebrow' => 'Kiến trúc · Nội thất · Xây dựng',
+            'title' => 'Kiến tạo không gian',
+            'accent' => 'vượt thời gian',
+            'description' => $siteSettings['hero_subtitle'] ?? 'ACONS đồng hành từ ý tưởng thiết kế đến thi công hoàn thiện, kiến tạo những công trình giàu bản sắc và bền vững.',
+            'primary_label' => 'Khám phá dự án',
+            'primary_url' => route('projects.index'),
+        ],
+        [
+            'eyebrow' => 'Giải pháp toàn diện',
+            'title' => 'Thiết kế đồng bộ',
+            'accent' => 'thi công chuẩn xác',
+            'description' => 'Một đội ngũ xuyên suốt từ kiến trúc, nội thất đến kỹ thuật giúp công trình giữ trọn ý tưởng, chất lượng và tiến độ.',
+            'primary_label' => 'Xem dịch vụ',
+            'primary_url' => route('services.index'),
+        ],
+        [
+            'eyebrow' => 'Dấu ấn ACONS',
+            'title' => 'Mỗi công trình',
+            'accent' => 'một bản sắc riêng',
+            'description' => 'Chúng tôi đặt con người và bối cảnh làm trung tâm để mỗi không gian vừa đẹp, vừa bền vững và thực sự thuộc về chủ nhân.',
+            'primary_label' => 'Xem hồ sơ năng lực',
+            'primary_url' => route('about.index'),
+        ],
+    ])->map(function (array $slide, int $index) use ($heroProjects, $heroFallbackImages): array {
+        $project = $heroProjects->get($index);
+        $slide['image'] = $project?->cover_image
+            ? asset('storage/'.$project->cover_image)
+            : $heroFallbackImages[$index];
+        $slide['image_alt'] = $project?->title
+            ? 'Dự án '.$project->title.' của ACONS'
+            : 'Không gian kiến trúc do ACONS thiết kế';
+
+        return $slide;
+    });
+    $heroProject = $heroProjects->first();
     $innovationProject = $projects->first(fn ($project) => filled($project->cover_image) && $project->isNot($heroProject));
     $innovationImage = $innovationProject?->cover_image
         ? asset('storage/'.$innovationProject->cover_image)
@@ -15,31 +54,80 @@
 @endphp
 
 @section('content')
-<section class="home-hero" style="--hero-image: url('{{ $heroImage }}')">
-    @if(!empty($siteSettings['hero_video_url']))
-        <video class="home-hero-video" autoplay muted loop playsinline poster="{{ $heroImage }}">
-            <source src="{{ $siteSettings['hero_video_url'] }}" type="video/mp4">
-        </video>
-    @endif
+<section id="aconsHeroSlider" class="carousel slide carousel-fade home-hero is-progressing" data-bs-ride="carousel" data-bs-interval="6500" data-bs-pause="hover" data-bs-touch="true" aria-label="Giới thiệu ACONS">
+    <div class="carousel-inner">
+        @foreach($heroSlides as $slide)
+            <article class="carousel-item home-hero-slide {{ $loop->first ? 'active is-animated' : '' }}" data-bs-interval="6500">
+                <img
+                    class="home-hero-media"
+                    src="{{ $slide['image'] }}"
+                    alt="{{ $slide['image_alt'] }}"
+                    decoding="async"
+                    @if($loop->first) fetchpriority="high" @else loading="lazy" @endif
+                >
+                @if($loop->first && !empty($siteSettings['hero_video_url']))
+                    <video class="home-hero-video" autoplay muted loop playsinline preload="metadata" poster="{{ $slide['image'] }}" aria-hidden="true">
+                        <source src="{{ $siteSettings['hero_video_url'] }}" type="video/mp4">
+                    </video>
+                @endif
+                <span class="home-hero-overlay" aria-hidden="true"></span>
 
-    <div class="container home-hero-inner">
-        <div class="home-kicker home-kicker-light">Kiến trúc · Nội thất · Xây dựng</div>
-        <h1 class="home-hero-title">
-            <span>Kiến tạo</span>
-            <span class="text-sky">không gian</span>
-            <span>vượt thời gian</span>
-        </h1>
-        <p class="home-hero-copy">{{ $siteSettings['hero_subtitle'] ?? 'ACONS đồng hành từ ý tưởng thiết kế đến thi công hoàn thiện, kiến tạo những công trình giàu bản sắc và bền vững.' }}</p>
-        <div class="home-hero-actions">
-            <a class="btn btn-acons" href="{{ route('projects.index') }}">Xem dự án <i class="bi bi-arrow-up-right"></i></a>
-            <a class="home-text-link home-text-link-light" href="{{ route('contacts.create') }}">Trao đổi cùng ACONS <i class="bi bi-arrow-right"></i></a>
-        </div>
+                <div class="container home-hero-slide-inner">
+                    <div class="home-hero-content">
+                        <div class="home-kicker home-kicker-light home-hero-animate home-hero-eyebrow">{{ $slide['eyebrow'] }}</div>
+                        @if($loop->first)
+                            <h1 class="home-hero-title home-hero-animate">
+                                <span>{{ $slide['title'] }}</span>
+                                <span class="text-sky">{{ $slide['accent'] }}</span>
+                            </h1>
+                        @else
+                            <h2 class="home-hero-title home-hero-animate">
+                                <span>{{ $slide['title'] }}</span>
+                                <span class="text-sky">{{ $slide['accent'] }}</span>
+                            </h2>
+                        @endif
+                        <p class="home-hero-copy home-hero-animate">{{ $slide['description'] }}</p>
+                        <div class="home-hero-actions home-hero-animate">
+                            <a class="btn btn-acons" href="{{ $slide['primary_url'] }}">{{ $slide['primary_label'] }} <i class="bi bi-arrow-up-right"></i></a>
+                            <a class="home-text-link home-text-link-light" href="{{ route('contacts.create') }}">Trao đổi cùng ACONS <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        @endforeach
+    </div>
 
-        <div class="home-hero-stats" aria-label="Thành tựu ACONS">
-            <div><strong>{{ $siteSettings['experience_years'] ?? '10' }}+</strong><span>Năm kinh nghiệm</span></div>
-            <div><strong>{{ $siteSettings['team_count'] ?? '35' }}+</strong><span>Kiến trúc sư & kỹ sư</span></div>
-            <div><strong>{{ $siteSettings['project_count'] ?? '120' }}+</strong><span>Dự án hoàn thành</span></div>
-            <div><strong>1.2M+</strong><span>m² đã thiết kế</span></div>
+    <div class="home-hero-navigation">
+        <div class="container home-hero-navigation-inner">
+            <div class="carousel-indicators home-hero-indicators" aria-label="Chọn nội dung giới thiệu">
+                @foreach($heroSlides as $slide)
+                    <button
+                        type="button"
+                        data-bs-target="#aconsHeroSlider"
+                        data-bs-slide-to="{{ $loop->index }}"
+                        class="{{ $loop->first ? 'active' : '' }}"
+                        @if($loop->first) aria-current="true" @endif
+                        aria-label="Xem slide {{ $loop->iteration }}: {{ $slide['title'] }}"
+                    ></button>
+                @endforeach
+            </div>
+
+            <div class="home-hero-progress" aria-hidden="true">
+                <span class="home-hero-progress-bar"></span>
+            </div>
+
+            <div class="home-hero-counter" aria-live="polite">
+                <span data-hero-current>01</span><span>/</span><span>{{ str_pad((string) $heroSlides->count(), 2, '0', STR_PAD_LEFT) }}</span>
+            </div>
+
+            <div class="home-hero-controls">
+                <button class="home-hero-control" type="button" data-bs-target="#aconsHeroSlider" data-bs-slide="prev" aria-label="Xem slide trước">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+                <button class="home-hero-control" type="button" data-bs-target="#aconsHeroSlider" data-bs-slide="next" aria-label="Xem slide tiếp theo">
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </div>
 </section>

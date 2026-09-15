@@ -15,7 +15,14 @@ class FrontendTest extends TestCase
 
     public function test_homepage_is_accessible(): void
     {
-        $this->get('/')->assertOk()->assertSee('ACONS');
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('ACONS')
+            ->assertSee('id="aconsHeroSlider"', false)
+            ->assertSee('data-bs-interval="6500"', false)
+            ->assertSee('Kiến tạo không gian')
+            ->assertSee('Thiết kế đồng bộ')
+            ->assertSee('Mỗi công trình');
     }
 
     public function test_epsilon_page_renders_technology_content(): void

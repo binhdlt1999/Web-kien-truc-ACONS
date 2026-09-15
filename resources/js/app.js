@@ -80,6 +80,44 @@ $(function () {
         }
     });
 
+    const heroSliderElement = document.getElementById('aconsHeroSlider');
+    if (heroSliderElement) {
+        const heroSlides = [...heroSliderElement.querySelectorAll('.home-hero-slide')];
+        const heroCurrent = heroSliderElement.querySelector('[data-hero-current]');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        const restartHeroProgress = () => {
+            heroSliderElement.classList.remove('is-progressing');
+            void heroSliderElement.offsetWidth;
+
+            if (!reducedMotion.matches) {
+                heroSliderElement.classList.add('is-progressing');
+            }
+        };
+
+        const animateHeroSlide = (slide) => {
+            heroSlides.forEach((heroSlide) => heroSlide.classList.remove('is-animated'));
+            void slide.offsetWidth;
+            slide.classList.add('is-animated');
+        };
+
+        heroSliderElement.addEventListener('slide.bs.carousel', (event) => {
+            animateHeroSlide(event.relatedTarget);
+            restartHeroProgress();
+        });
+
+        heroSliderElement.addEventListener('slid.bs.carousel', (event) => {
+            if (heroCurrent) {
+                heroCurrent.textContent = String(event.to + 1).padStart(2, '0');
+            }
+        });
+
+        if (reducedMotion.matches) {
+            bootstrap.Carousel.getOrCreateInstance(heroSliderElement).pause();
+            heroSliderElement.classList.remove('is-progressing');
+        }
+    }
+
     $('.filter-btn').on('click', function () {
         const filter = $(this).data('filter');
         const $grid = $('#featuredProjectsGrid');
