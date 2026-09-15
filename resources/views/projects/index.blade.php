@@ -3,8 +3,8 @@
 @section('meta_description', 'Khám phá các dự án kiến trúc, nội thất và xây dựng tiêu biểu của ACONS.')
 
 @section('content')
-<header class="page-hero"><div class="container"><div class="eyebrow text-white-50">Portfolio</div><h1 class="display-title display-3">Dự án ACONS</h1></div></header>
-<section class="section-space">
+<header class="page-hero" data-reveal="fade"><div class="container"><div class="eyebrow text-white-50">Portfolio</div><h1 class="display-title display-3">Dự án ACONS</h1></div></header>
+<section class="section-space" data-reveal="fade-up">
     <div class="container">
         <form class="row g-3 align-items-end mb-5" method="GET">
             <div class="col-md-5"><label class="form-label" for="q">Tìm dự án</label><input class="form-control" id="q" name="q" value="{{ request('q') }}" placeholder="Tên, địa điểm, phong cách..."></div>

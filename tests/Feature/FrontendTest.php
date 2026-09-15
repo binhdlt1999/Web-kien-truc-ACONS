@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Project;
@@ -31,6 +32,7 @@ class FrontendTest extends TestCase
     {
         $this->get(route('epsilon.index'))
             ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false)
             ->assertSee('Công nghệ cho')
             ->assertSee('BIM Coordination');
     }
@@ -39,6 +41,7 @@ class FrontendTest extends TestCase
     {
         $this->get(route('resources.index'))
             ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false)
             ->assertSee('Trung tâm kiến thức ACONS')
             ->assertSee('Hồ sơ dự án');
     }
@@ -47,8 +50,46 @@ class FrontendTest extends TestCase
     {
         $this->get(route('about.index'))
             ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false)
             ->assertSee('Câu chuyện ACONS')
             ->assertSee('Giá trị cốt lõi');
+    }
+
+    public function test_services_page_uses_scroll_reveal(): void
+    {
+        $this->get(route('services.index'))
+            ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false);
+    }
+
+    public function test_projects_index_uses_scroll_reveal(): void
+    {
+        $this->get(route('projects.index'))
+            ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false);
+    }
+
+    public function test_contact_page_uses_scroll_reveal(): void
+    {
+        $this->get(route('contacts.create'))
+            ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false);
+    }
+
+    public function test_article_page_uses_scroll_reveal(): void
+    {
+        $article = Article::create([
+            'title' => 'Kiến trúc bền vững',
+            'slug' => 'kien-truc-ben-vung',
+            'excerpt' => 'Góc nhìn từ đội ngũ ACONS.',
+            'body' => 'Nội dung bài viết.',
+            'status' => 'published',
+            'published_at' => now()->subMinute(),
+        ]);
+
+        $this->get(route('articles.show', $article))
+            ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false);
     }
 
     public function test_contact_form_validates_and_stores_a_lead(): void
@@ -91,7 +132,10 @@ class FrontendTest extends TestCase
             'status' => 'draft',
         ]);
 
-        $this->get(route('projects.show', $published))->assertOk()->assertSee('Villa A');
+        $this->get(route('projects.show', $published))
+            ->assertOk()
+            ->assertSee('data-reveal="fade-up"', false)
+            ->assertSee('Villa A');
         $this->get(route('projects.show', $draft))->assertNotFound();
     }
 }

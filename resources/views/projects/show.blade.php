@@ -49,7 +49,7 @@
 
 @section('content')
 <article class="project-detail-page">
-    <header class="project-detail-hero" style="--project-hero-image: url('{{ $coverImage }}')">
+    <header class="project-detail-hero" style="--project-hero-image: url('{{ $coverImage }}')" data-reveal="fade">
         <div class="container project-detail-hero-inner">
             <div class="project-detail-breadcrumb">Dự án <span>/</span> {{ $project->category->name }}</div>
             <h1>{{ $project->title }}</h1>
@@ -70,7 +70,7 @@
         <a href="#project-overview" class="project-scroll-cue" aria-label="Cuộn đến thông tin dự án"><span>Cuộn xuống</span><i class="bi bi-arrow-down"></i></a>
     </header>
 
-    <section class="project-section project-overview" id="project-overview">
+    <section class="project-section project-overview" id="project-overview" data-reveal="fade-up">
         <div class="container">
             <div class="project-section-heading project-section-heading-split">
                 <div>
@@ -99,7 +99,7 @@
         </div>
     </section>
 
-    <section class="project-section project-story">
+    <section class="project-section project-story" data-reveal="fade-up">
         <div class="container">
             <div class="project-kicker">02 — Câu chuyện dự án</div>
             <div class="project-story-intro">
@@ -122,7 +122,7 @@
         </div>
     </section>
 
-    <section class="project-scale" aria-label="Quy mô dự án">
+    <section class="project-scale" aria-label="Quy mô dự án" data-reveal="fade">
         <div class="container">
             <div class="project-kicker">03 — Quy mô dự án</div>
             <h2>Những con số</h2>
@@ -137,7 +137,7 @@
         </div>
     </section>
 
-    <section class="project-section project-challenges" id="project-challenges">
+    <section class="project-section project-challenges" id="project-challenges" data-reveal="fade-up">
         <div class="container">
             <div class="project-challenge-grid">
                 <div>
@@ -167,7 +167,7 @@
         </div>
     </section>
 
-    <section class="project-section project-solutions">
+    <section class="project-section project-solutions" data-reveal="fade-up">
         <div class="container">
             <div class="project-solution-grid">
                 <div>
@@ -199,7 +199,7 @@
         </div>
     </section>
 
-    <section class="project-technical">
+    <section class="project-technical" data-reveal="fade-up">
         <div class="container">
             <div class="project-kicker">06 — Hồ sơ kỹ thuật</div>
             <h2>Trực quan hóa thiết kế</h2>
@@ -217,7 +217,7 @@
         </div>
     </section>
 
-    <section class="project-section project-coordination">
+    <section class="project-section project-coordination" data-reveal="fade-up">
         <div class="container">
             <div class="project-kicker">07 — Phối hợp thiết kế</div>
             <div class="project-coordination-grid">
@@ -245,7 +245,7 @@
         </div>
     </section>
 
-    <section class="project-section project-gallery-section">
+    <section class="project-section project-gallery-section" data-reveal="fade-up">
         <div class="container">
             <div class="project-section-heading project-section-heading-split">
                 <div>
@@ -267,7 +267,7 @@
     </section>
 
     @if($project->floorPlans->isNotEmpty())
-        <section class="project-section project-floor-plans">
+        <section class="project-section project-floor-plans" data-reveal="fade-up">
             <div class="container">
                 <div class="project-kicker">09 — Bản vẽ mặt bằng</div>
                 <div class="project-section-heading project-section-heading-split">
@@ -286,7 +286,7 @@
         </section>
     @endif
 
-    <section class="project-timeline">
+    <section class="project-timeline" data-reveal="fade">
         <div class="container">
             <div class="project-kicker">10 — Tiến trình dự án</div>
             <h2>Hành trình kiến tạo</h2>
@@ -310,7 +310,7 @@
         </div>
     </section>
 
-    <section class="project-section project-outcomes">
+    <section class="project-section project-outcomes" data-reveal="fade-up">
         <div class="container">
             <div class="project-section-heading project-section-heading-split">
                 <div>
@@ -328,7 +328,7 @@
         </div>
     </section>
 
-    <section class="project-section project-scope">
+    <section class="project-section project-scope" data-reveal="fade-up">
         <div class="container">
             <div class="project-kicker">12 — Phạm vi ACONS</div>
             <div class="project-scope-grid">
@@ -361,7 +361,7 @@
     </section>
 
     @if($relatedProjects->isNotEmpty())
-        <section class="project-section project-related">
+        <section class="project-section project-related" data-reveal="fade-up">
             <div class="container">
                 <div class="project-section-heading project-section-heading-split">
                     <div>
@@ -385,7 +385,7 @@
         </section>
     @endif
 
-    <section class="project-contact-cta">
+    <section class="project-contact-cta" data-reveal="fade-up">
         <div class="container">
             <div class="project-kicker">Đồng hành cùng ACONS</div>
             <h2>Bạn có một dự án<br>đang ấp ủ?</h2>

@@ -11,7 +11,7 @@
 
 @section('content')
 <article class="editorial-page epsilon-page">
-    <header class="editorial-hero epsilon-hero" style="--editorial-hero-image: url('{{ $heroImage }}')">
+    <header class="editorial-hero epsilon-hero" style="--editorial-hero-image: url('{{ $heroImage }}')" data-reveal="fade">
         <div class="container editorial-hero-inner">
             <div class="editorial-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Epsilon</div>
             <div class="editorial-kicker editorial-kicker-light"><i class="bi bi-hexagon-fill"></i> ACONS Technology Division</div>
@@ -33,7 +33,7 @@
         </div>
     </header>
 
-    <section class="editorial-section epsilon-capabilities" id="epsilon-capabilities">
+    <section class="editorial-section epsilon-capabilities" id="epsilon-capabilities" data-reveal="fade-up">
         <div class="container">
             <div class="editorial-heading-split">
                 <div><div class="editorial-kicker">Năng lực số</div><h2>Một hệ công nghệ<br>cho toàn dự án</h2></div>
@@ -47,7 +47,7 @@
         </div>
     </section>
 
-    <section class="epsilon-platform" id="bim">
+    <section class="epsilon-platform" id="bim" data-reveal="fade-up">
         <div class="container epsilon-platform-grid">
             <div class="epsilon-blueprint" aria-label="Mô phỏng mô hình BIM">
                 <div class="epsilon-blueprint-grid"></div>
@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <section class="editorial-section epsilon-ai" id="ai-lab">
+    <section class="editorial-section epsilon-ai" id="ai-lab" data-reveal="fade-up">
         <div class="container epsilon-ai-grid">
             <div>
                 <div class="editorial-kicker">02 / AI Lab</div>
@@ -86,7 +86,7 @@
         </div>
     </section>
 
-    <section class="editorial-section editorial-section-soft" id="digital-workflow">
+    <section class="editorial-section editorial-section-soft" id="digital-workflow" data-reveal="fade-up">
         <div class="container">
             <div class="editorial-heading-split">
                 <div><div class="editorial-kicker">03 / Digital workflow</div><h2>Dòng thông tin<br>không đứt gãy</h2></div>
@@ -107,7 +107,7 @@
     </section>
 
     @if($featuredProjects->isNotEmpty())
-        <section class="editorial-section editorial-projects">
+        <section class="editorial-section editorial-projects" data-reveal="fade-up">
             <div class="container">
                 <div class="editorial-heading-split"><div><div class="editorial-kicker">Ứng dụng thực tế</div><h2>Dự án được hỗ trợ<br>bởi dữ liệu</h2></div><a href="{{ route('projects.index') }}" class="editorial-text-link">Xem tất cả dự án <i class="bi bi-arrow-right"></i></a></div>
                 <div class="editorial-project-grid">
@@ -120,7 +120,7 @@
         </section>
     @endif
 
-    <section class="editorial-final-cta editorial-final-cta-dark">
+    <section class="editorial-final-cta editorial-final-cta-dark" data-reveal="fade-up">
         <div class="container"><div class="editorial-kicker editorial-kicker-light">Kết nối công nghệ và thiết kế</div><h2>Bắt đầu một dự án<br>thông minh hơn</h2><p>Chia sẻ bài toán của bạn để ACONS và Epsilon đề xuất luồng triển khai phù hợp.</p><a href="{{ route('contacts.create') }}" class="btn btn-acons">Trao đổi cùng chúng tôi <i class="bi bi-arrow-right"></i></a></div>
     </section>
 </article>

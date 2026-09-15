@@ -11,7 +11,7 @@
 
 @section('content')
 <article class="editorial-page resources-page">
-    <header class="editorial-hero resources-hero">
+    <header class="editorial-hero resources-hero" data-reveal="fade">
         <div class="container editorial-hero-inner">
             <div class="editorial-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Tài nguyên</div>
             <div class="editorial-kicker">Trung tâm kiến thức ACONS</div>
@@ -25,7 +25,7 @@
         </div>
     </header>
 
-    <section class="resources-directory" id="knowledge">
+    <section class="resources-directory" id="knowledge" data-reveal="fade-up">
         <div class="container">
             <div class="resources-directory-grid">
                 <a href="#project-files"><span>01</span><i class="bi bi-buildings"></i><div><h2>Hồ sơ dự án</h2><p>Ý tưởng, giải pháp và kết quả của các công trình ACONS.</p></div><i class="bi bi-arrow-down-right"></i></a>
@@ -36,7 +36,7 @@
         </div>
     </section>
 
-    <section class="editorial-section resources-feature" id="articles">
+    <section class="editorial-section resources-feature" id="articles" data-reveal="fade-up">
         <div class="container">
             <div class="editorial-heading-split"><div><div class="editorial-kicker">Mới nhất</div><h2>Góc nhìn<br>chuyên môn</h2></div><p>Những phân tích ngắn gọn giúp chủ đầu tư hiểu rõ hơn về không gian, vật liệu, chi phí và quy trình triển khai.</p></div>
             @if($featuredArticle)
@@ -67,7 +67,7 @@
         </div>
     </section>
 
-    <section class="editorial-section editorial-section-dark resources-project-files" id="project-files">
+    <section class="editorial-section editorial-section-dark resources-project-files" id="project-files" data-reveal="fade-up">
         <div class="container">
             <div class="editorial-heading-split"><div><div class="editorial-kicker editorial-kicker-light">Hồ sơ dự án</div><h2>Giải pháp phía sau<br>mỗi công trình</h2></div><a href="{{ route('projects.index') }}" class="editorial-text-link editorial-text-link-light">Toàn bộ dự án <i class="bi bi-arrow-right"></i></a></div>
             <div class="editorial-project-grid">
@@ -81,7 +81,7 @@
         </div>
     </section>
 
-    <section class="editorial-section resources-guides" id="guides">
+    <section class="editorial-section resources-guides" id="guides" data-reveal="fade-up">
         <div class="container resources-guides-grid">
             <div><div class="editorial-kicker">Cẩm nang ACONS</div><h2>Kiến thức cần biết<br>trước khi bắt đầu</h2><p>Các nội dung được tổ chức theo từng giai đoạn để bạn dễ tìm đúng thông tin đang cần.</p></div>
             <div class="resources-guide-list">
@@ -92,7 +92,7 @@
         </div>
     </section>
 
-    <section class="resources-news-strip" id="news">
+    <section class="resources-news-strip" id="news" data-reveal="fade">
         <div class="container"><span>Tin tức ACONS</span><p>Theo dõi hoạt động mới, câu chuyện công trường và các chương trình chuyên môn của đội ngũ.</p><a href="{{ route('contacts.create') }}">Kết nối với ACONS <i class="bi bi-arrow-right"></i></a></div>
     </section>
 </article>

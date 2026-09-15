@@ -42,7 +42,7 @@
 
 @section('content')
 <article class="services-page">
-    <header class="services-hero" style="--services-hero-image: url('{{ asset('images/hero-architecture.svg') }}')">
+    <header class="services-hero" style="--services-hero-image: url('{{ asset('images/hero-architecture.svg') }}')" data-reveal="fade">
         <div class="container services-hero-inner">
             <div class="services-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Dịch vụ</div>
             <div class="services-kicker services-kicker-light">Chuyên môn ACONS</div>
@@ -61,7 +61,7 @@
         <a href="#services-overview" class="services-scroll-cue" aria-label="Cuộn đến danh sách dịch vụ"><span>Cuộn xuống</span><i class="bi bi-arrow-down"></i></a>
     </header>
 
-    <section class="services-overview" id="services-overview">
+    <section class="services-overview" id="services-overview" data-reveal="fade-up">
         <div class="container">
             <div class="services-heading-split">
                 <div>
@@ -88,7 +88,7 @@
     </section>
 
     @if($services->isNotEmpty())
-        <section class="services-deliver-intro">
+        <section class="services-deliver-intro" data-reveal="fade-up">
             <div class="container">
                 <div class="services-kicker">Chi tiết dịch vụ</div>
                 <h2>ACONS mang đến điều gì?</h2>
@@ -106,7 +106,7 @@
                     ];
                     $serviceImage = $visualPool[$loop->index % $visualPool->count()];
                 @endphp
-                <section class="services-delivery-row {{ $loop->even ? 'is-reversed' : '' }}" id="service-{{ $service->slug }}">
+                <section class="services-delivery-row {{ $loop->even ? 'is-reversed' : '' }}" id="service-{{ $service->slug }}" data-reveal="fade-up">
                     <div class="container services-delivery-grid">
                         <figure class="services-delivery-visual">
                             <img src="{{ $serviceImage }}" alt="{{ $service->name }} tại ACONS" loading="lazy">
@@ -138,7 +138,7 @@
         </div>
     @endif
 
-    <section class="services-difference">
+    <section class="services-difference" data-reveal="fade-up">
         <div class="container">
             <div class="services-kicker services-kicker-centered">Khác biệt ACONS</div>
             <h2>Vì sao khách hàng chọn ACONS?</h2>
@@ -158,7 +158,7 @@
     </section>
 
     @if($featuredProjects->isNotEmpty())
-        <section class="services-projects">
+        <section class="services-projects" data-reveal="fade-up">
             <div class="container">
                 <div class="services-heading-split">
                     <div>
@@ -182,7 +182,7 @@
         </section>
     @endif
 
-    <section class="services-process">
+    <section class="services-process" data-reveal="fade-up">
         <div class="container">
             <div class="services-kicker services-kicker-centered">Cách chúng tôi làm việc</div>
             <h2>Quy trình triển khai</h2>
@@ -205,7 +205,7 @@
         </div>
     </section>
 
-    <section class="services-technology" id="services-technology">
+    <section class="services-technology" id="services-technology" data-reveal="fade-up">
         <div class="container">
             <div class="services-technology-grid">
                 <div>
@@ -227,7 +227,7 @@
         </div>
     </section>
 
-    <section class="services-partners">
+    <section class="services-partners" data-reveal="fade">
         <div class="container">
             <div class="services-kicker services-kicker-centered">Khách hàng &amp; đối tác</div>
             <h2>Hệ sinh thái đồng hành</h2>
@@ -252,7 +252,7 @@
         </div>
     </section>
 
-    <section class="services-faq">
+    <section class="services-faq" data-reveal="fade-up">
         <div class="container services-faq-grid">
             <div>
                 <div class="services-kicker">Câu hỏi thường gặp</div>
@@ -277,7 +277,7 @@
         </div>
     </section>
 
-    <section class="services-final-cta">
+    <section class="services-final-cta" data-reveal="fade-up">
         <div class="container">
             <div class="services-kicker services-kicker-light">Bắt đầu cùng ACONS</div>
             <h2>Sẵn sàng cho<br>dự án tiếp theo?</h2>

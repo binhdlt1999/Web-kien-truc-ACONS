@@ -13,7 +13,7 @@
 
 @section('content')
 <article class="contact-page">
-    <header class="contact-hero" style="--contact-hero-image: url('{{ asset('images/hero-architecture.svg') }}')">
+    <header class="contact-hero" style="--contact-hero-image: url('{{ asset('images/hero-architecture.svg') }}')" data-reveal="fade">
         <div class="container contact-hero-inner">
             <div class="contact-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Liên hệ</div>
             <div class="contact-kicker contact-kicker-light">Kết nối cùng ACONS</div>
@@ -32,7 +32,7 @@
         </div>
     </header>
 
-    <section class="contact-info-band" aria-label="Thông tin liên hệ ACONS">
+    <section class="contact-info-band" aria-label="Thông tin liên hệ ACONS" data-reveal="fade-up">
         <div class="container">
             <div class="contact-info-grid">
                 <div>
@@ -63,7 +63,7 @@
         </div>
     </section>
 
-    <section class="contact-services" id="contact-services">
+    <section class="contact-services" id="contact-services" data-reveal="fade-up">
         <div class="container">
             <div class="contact-kicker">Dịch vụ</div>
             <h2>Bạn đang quan tâm đến điều gì?</h2>
@@ -80,7 +80,7 @@
         </div>
     </section>
 
-    <section class="contact-inquiry" id="contact-form">
+    <section class="contact-inquiry" id="contact-form" data-reveal="fade-up">
         <div class="container">
             <div class="contact-inquiry-grid">
                 <div class="contact-inquiry-intro">
@@ -106,7 +106,7 @@
         </div>
     </section>
 
-    <section class="contact-location" id="contact-location">
+    <section class="contact-location" id="contact-location" data-reveal="fade">
         <div class="contact-location-map">
             @if($mapUrl)
                 <iframe src="{{ $mapUrl }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bản đồ văn phòng ACONS"></iframe>
@@ -133,7 +133,7 @@
         </div>
     </section>
 
-    <section class="contact-why">
+    <section class="contact-why" data-reveal="fade-up">
         <div class="container">
             <div class="contact-why-grid">
                 <div>
@@ -150,7 +150,7 @@
         </div>
     </section>
 
-    <section class="contact-faq">
+    <section class="contact-faq" data-reveal="fade-up">
         <div class="container">
             <div class="contact-faq-grid">
                 <div>
@@ -182,7 +182,7 @@
         </div>
     </section>
 
-    <section class="contact-final-cta">
+    <section class="contact-final-cta" data-reveal="fade-up">
         <div class="container">
             <h2>Sẵn sàng bắt đầu<br>dự án tiếp theo?</h2>
             <p>Đội ngũ ACONS sẵn sàng cùng bạn biến ý tưởng thành một không gian có giá trị lâu dài.</p>

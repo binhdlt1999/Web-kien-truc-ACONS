@@ -4,7 +4,7 @@
 
 @section('content')
 <article class="editorial-page about-page">
-    <header class="editorial-hero about-hero" style="--editorial-hero-image: url('{{ asset('images/hero-architecture.svg') }}')">
+    <header class="editorial-hero about-hero" style="--editorial-hero-image: url('{{ asset('images/hero-architecture.svg') }}')" data-reveal="fade">
         <div class="container editorial-hero-inner">
             <div class="editorial-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Giới thiệu</div>
             <div class="editorial-kicker editorial-kicker-light">Kiến trúc · Nội thất · Xây dựng</div>
@@ -19,7 +19,7 @@
         </div>
     </header>
 
-    <section class="editorial-section about-story" id="our-story">
+    <section class="editorial-section about-story" id="our-story" data-reveal="fade-up">
         <div class="container about-story-grid">
             <div><div class="editorial-kicker">Câu chuyện ACONS</div><h2>Bắt đầu từ niềm tin<br>vào thiết kế tử tế</h2></div>
             <div><p class="about-story-lead">Một công trình có giá trị không chỉ đẹp ở ngày bàn giao, mà còn cần phù hợp với con người, khí hậu và cách nó được sử dụng trong nhiều năm sau đó.</p><p>Vì vậy, ACONS kết nối thiết kế và thi công trong một quy trình thống nhất. Mỗi quyết định đều được cân nhắc trên ba phương diện: trải nghiệm không gian, tính khả thi và giá trị dài hạn.</p><a href="#values" class="editorial-text-link">Khám phá giá trị của chúng tôi <i class="bi bi-arrow-down"></i></a></div>
@@ -27,7 +27,7 @@
         <div class="container about-story-visual"><img src="{{ asset('images/hero-architecture.svg') }}" alt="Không gian kiến trúc do ACONS thiết kế"><span>Không gian có bản sắc<br>được tạo nên từ sự thấu hiểu.</span></div>
     </section>
 
-    <section class="editorial-section editorial-section-soft about-values" id="values">
+    <section class="editorial-section editorial-section-soft about-values" id="values" data-reveal="fade-up">
         <div class="container">
             <div class="editorial-heading-split"><div><div class="editorial-kicker">Giá trị cốt lõi</div><h2>Nguyên tắc dẫn lối<br>mọi quyết định</h2></div><p>Những giá trị này định hình cách ACONS lắng nghe, thiết kế, phối hợp và chịu trách nhiệm với từng công trình.</p></div>
             <div class="editorial-card-grid">
@@ -43,7 +43,7 @@
         </div>
     </section>
 
-    <section class="editorial-section about-team" id="team">
+    <section class="editorial-section about-team" id="team" data-reveal="fade-up">
         <div class="container about-team-grid">
             <div class="about-team-copy"><div class="editorial-kicker">Đội ngũ liên ngành</div><h2>Một góc nhìn chung,<br>nhiều chuyên môn</h2><p>Kiến trúc sư, kỹ sư kết cấu, kỹ sư MEP và đội ngũ triển khai cùng tham gia từ sớm. Sự phối hợp này giúp ý tưởng được bảo toàn khi đi vào thực tế.</p><div class="about-team-stat"><strong>100+</strong><span>Kiến trúc sư, kỹ sư<br>và cộng sự chuyên môn</span></div></div>
             <div class="about-team-board">
@@ -55,7 +55,7 @@
         </div>
     </section>
 
-    <section class="about-journey" id="journey">
+    <section class="about-journey" id="journey" data-reveal="fade">
         <div class="container">
             <div class="editorial-kicker editorial-kicker-light">Hành trình phát triển</div><h2>Từng bước xây dựng<br>một hệ sinh thái đồng bộ</h2>
             <div class="about-timeline">
@@ -68,16 +68,16 @@
     </section>
 
     @if($testimonials->isNotEmpty())
-        <section class="editorial-section about-voices">
+        <section class="editorial-section about-voices" data-reveal="fade-up">
             <div class="container"><div class="editorial-kicker">Khách hàng nói về ACONS</div><div class="about-voice-grid">@foreach($testimonials as $testimonial)<blockquote><i class="bi bi-quote"></i><p>{{ $testimonial->content }}</p><footer><strong>{{ $testimonial->customer_name }}</strong><span>{{ $testimonial->position }}{{ $testimonial->company ? ' · '.$testimonial->company : '' }}</span></footer></blockquote>@endforeach</div></div>
         </section>
     @endif
 
-    <section class="editorial-section editorial-section-soft about-partners" id="partners">
+    <section class="editorial-section editorial-section-soft about-partners" id="partners" data-reveal="fade-up">
         <div class="container"><div class="editorial-heading-split"><div><div class="editorial-kicker">Hệ sinh thái</div><h2>Những đối tác<br>cùng tạo nên giá trị</h2></div><p>ACONS xây dựng mạng lưới đối tác vật liệu, kỹ thuật và công nghệ để mỗi giải pháp đều có khả năng triển khai thực tế.</p></div><div class="about-partner-grid">@forelse($partners as $partner)<div>@if($partner->logo)<img src="{{ asset('storage/'.$partner->logo) }}" alt="{{ $partner->name }}" loading="lazy">@else<span>{{ $partner->name }}</span>@endif</div>@empty<div>Đối tác vật liệu</div><div>Đối tác kỹ thuật</div><div>Đối tác nội thất</div><div>Đối tác công nghệ</div>@endforelse</div></div>
     </section>
 
-    <section class="editorial-final-cta">
+    <section class="editorial-final-cta" data-reveal="fade-up">
         <div class="container"><div class="editorial-kicker">Bắt đầu cùng ACONS</div><h2>Cùng tạo nên một công trình<br>có giá trị lâu dài</h2><p>Chia sẻ với chúng tôi về ý tưởng, khu đất và mục tiêu của bạn.</p><a href="{{ route('contacts.create') }}" class="btn btn-acons">Kết nối với ACONS <i class="bi bi-arrow-right"></i></a></div>
     </section>
 </article>
