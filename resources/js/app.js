@@ -4,6 +4,11 @@ import $ from 'jquery';
 window.bootstrap = bootstrap;
 window.$ = window.jQuery = $;
 
+const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (!reducedMotionPreference.matches) {
+    document.documentElement.classList.add('has-reveal');
+}
+
 $(function () {
     const $navbar = $('.site-navbar');
     const updateNavbar = () => $navbar.toggleClass('is-scrolled', window.scrollY > 30);
@@ -84,13 +89,12 @@ $(function () {
     if (heroSliderElement) {
         const heroSlides = [...heroSliderElement.querySelectorAll('.home-hero-slide')];
         const heroCurrent = heroSliderElement.querySelector('[data-hero-current]');
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
         const restartHeroProgress = () => {
             heroSliderElement.classList.remove('is-progressing');
             void heroSliderElement.offsetWidth;
 
-            if (!reducedMotion.matches) {
+            if (!reducedMotionPreference.matches) {
                 heroSliderElement.classList.add('is-progressing');
             }
         };
@@ -112,9 +116,34 @@ $(function () {
             }
         });
 
-        if (reducedMotion.matches) {
+        if (reducedMotionPreference.matches) {
             bootstrap.Carousel.getOrCreateInstance(heroSliderElement).pause();
             heroSliderElement.classList.remove('is-progressing');
+        }
+    }
+
+    const revealElements = [...document.querySelectorAll('[data-reveal]')];
+    if (revealElements.length) {
+        const showRevealElement = (element) => element.classList.add('is-visible');
+
+        if (reducedMotionPreference.matches || !('IntersectionObserver' in window)) {
+            revealElements.forEach(showRevealElement);
+        } else {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    showRevealElement(entry.target);
+                    revealObserver.unobserve(entry.target);
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -8% 0px',
+            });
+
+            revealElements.forEach((element) => revealObserver.observe(element));
         }
     }
 

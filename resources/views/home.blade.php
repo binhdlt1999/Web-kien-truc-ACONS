@@ -135,26 +135,26 @@
 <section class="home-achievements" aria-label="Năng lực ACONS">
     <div class="container-fluid px-0">
         <div class="achievement-grid">
-            <div class="achievement-item"><strong>{{ $siteSettings['experience_years'] ?? '10' }}+</strong><span>Năm kinh nghiệm</span><small>Kiến tạo giá trị bền vững</small></div>
-            <div class="achievement-item"><strong>{{ $siteSettings['team_count'] ?? '35' }}+</strong><span>Nhân sự chuyên môn</span><small>Kiến trúc · Nội thất · Kỹ thuật</small></div>
-            <div class="achievement-item"><strong>1.2M+</strong><span>m² thiết kế</span><small>Trên nhiều loại hình công trình</small></div>
-            <div class="achievement-item"><strong>{{ $siteSettings['project_count'] ?? '120' }}+</strong><span>Dự án bàn giao</span><small>Nhà ở · Thương mại · Văn phòng</small></div>
-            <div class="achievement-item"><strong>100%</strong><span>Quy trình kiểm soát</span><small>Minh bạch chất lượng và tiến độ</small></div>
+            <div class="achievement-item" data-reveal="fade-up"><strong>{{ $siteSettings['experience_years'] ?? '10' }}+</strong><span>Năm kinh nghiệm</span><small>Kiến tạo giá trị bền vững</small></div>
+            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 80ms"><strong>{{ $siteSettings['team_count'] ?? '35' }}+</strong><span>Nhân sự chuyên môn</span><small>Kiến trúc · Nội thất · Kỹ thuật</small></div>
+            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 160ms"><strong>1.2M+</strong><span>m² thiết kế</span><small>Trên nhiều loại hình công trình</small></div>
+            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 240ms"><strong>{{ $siteSettings['project_count'] ?? '120' }}+</strong><span>Dự án bàn giao</span><small>Nhà ở · Thương mại · Văn phòng</small></div>
+            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 320ms"><strong>100%</strong><span>Quy trình kiểm soát</span><small>Minh bạch chất lượng và tiến độ</small></div>
         </div>
     </div>
 </section>
 
 <section class="home-section home-services" id="dich-vu">
     <div class="container">
-        <div class="home-kicker">Dịch vụ của chúng tôi</div>
-        <div class="home-section-heading">
+        <div class="home-kicker" data-reveal="fade">Dịch vụ của chúng tôi</div>
+        <div class="home-section-heading" data-reveal="fade-up" style="--reveal-delay: 80ms">
             <h2>Kiến tạo <span class="text-sky">trọn vẹn</span></h2>
             <p>Giải pháp đồng bộ từ ý tưởng, thiết kế đến thi công dành cho chủ đầu tư cá nhân và doanh nghiệp.</p>
         </div>
 
         <div class="home-service-grid">
             @forelse($services->take(4) as $service)
-                <article class="home-service-card">
+                <article class="home-service-card" data-reveal="fade-up" style="--reveal-delay: {{ $loop->index * 80 }}ms">
                     <span class="home-service-icon"><i class="bi {{ $service->icon }}"></i></span>
                     <h3>{{ $service->name }}</h3>
                     <p>{{ $service->summary }}</p>
@@ -176,14 +176,14 @@
 
 <section class="home-section home-projects" id="featured-projects">
     <div class="container">
-        <div class="home-kicker">Dự án nổi bật</div>
-        <div class="home-section-heading home-section-heading-light">
+        <div class="home-kicker" data-reveal="fade">Dự án nổi bật</div>
+        <div class="home-section-heading home-section-heading-light" data-reveal="fade-up" style="--reveal-delay: 80ms">
             <h2>Công trình <span class="text-sky">định hình</span><br>dấu ấn</h2>
             <a class="btn btn-outline-figma" href="{{ route('projects.index') }}">Xem tất cả dự án <i class="bi bi-arrow-up-right"></i></a>
         </div>
 
         @if($categories->isNotEmpty())
-            <div class="project-filter" aria-label="Lọc dự án theo danh mục">
+            <div class="project-filter" data-reveal="fade" style="--reveal-delay: 160ms" aria-label="Lọc dự án theo danh mục">
                 <button class="filter-btn active" type="button" data-filter="*">Tất cả</button>
                 @foreach($categories as $category)
                     <button class="filter-btn" type="button" data-filter="{{ $category->slug }}">{{ $category->name }}</button>
@@ -193,7 +193,7 @@
 
         <div class="home-project-grid" id="featuredProjectsGrid">
             @forelse($homepageProjects as $project)
-                <article class="home-project-card project-filter-item project-layout-{{ $loop->iteration }}" data-category="{{ $project->category->slug }}">
+                <article class="home-project-card project-filter-item project-layout-{{ $loop->iteration }}" data-category="{{ $project->category->slug }}" data-reveal="fade" style="--reveal-delay: {{ $loop->index * 80 }}ms">
                     <a href="{{ route('projects.show', $project) }}">
                         <img src="{{ $project->cover_image ? asset('storage/'.$project->cover_image) : asset('images/project-placeholder.svg') }}" alt="{{ $project->title }}" @if(!$loop->first) loading="lazy" @endif>
                         <span class="home-project-category">{{ $project->category->name }} · {{ $project->style ?: 'Kiến trúc' }}</span>
@@ -212,8 +212,8 @@
 
 <section class="home-section home-difference" id="gioi-thieu">
     <div class="container position-relative">
-        <div class="home-kicker">Vì sao chọn ACONS</div>
-        <h2 class="home-display-heading text-sky">Khác biệt</h2>
+        <div class="home-kicker" data-reveal="fade">Vì sao chọn ACONS</div>
+        <h2 class="home-display-heading text-sky" data-reveal="fade-up" style="--reveal-delay: 80ms">Khác biệt</h2>
         <div class="difference-grid">
             @foreach([
                 ['bi-stars', '01', 'Tư duy thiết kế', 'Mỗi giải pháp bắt đầu từ việc đọc đúng con người, bối cảnh và mục tiêu đầu tư.'],
@@ -221,7 +221,7 @@
                 ['bi-layers', '03', 'Quy trình đồng bộ', 'Kiến trúc, nội thất và kỹ thuật phối hợp xuyên suốt trên một hệ tiêu chuẩn.'],
                 ['bi-bullseye', '04', 'Cam kết chất lượng', 'Từng chi tiết được kiểm soát minh bạch từ hồ sơ đến nghiệm thu công trình.'],
             ] as [$icon, $number, $title, $copy])
-                <article class="difference-item">
+                <article class="difference-item" data-reveal="fade-up" style="--reveal-delay: {{ $loop->index * 80 }}ms">
                     <div class="difference-number"><i class="bi {{ $icon }}"></i><span>{{ $number }}</span></div>
                     <h3>{{ $title }}</h3>
                     <p>{{ $copy }}</p>
@@ -234,9 +234,9 @@
 
 <section class="home-section home-innovation">
     <div class="container">
-        <div class="home-kicker home-kicker-centered">Đổi mới trong từng giải pháp</div>
+        <div class="home-kicker home-kicker-centered" data-reveal="fade">Đổi mới trong từng giải pháp</div>
         <div class="innovation-grid">
-            <figure class="innovation-visual">
+            <figure class="innovation-visual" data-reveal="fade">
                 <img src="{{ $innovationImage }}" alt="Năng lực thiết kế và triển khai của ACONS" loading="lazy">
                 <figcaption>
                     <div><strong>{{ $siteSettings['project_count'] ?? '120' }}+</strong><span>Dự án</span></div>
@@ -245,7 +245,7 @@
                     <div><strong>100%</strong><span>Kiểm soát</span></div>
                 </figcaption>
             </figure>
-            <div class="innovation-content">
+            <div class="innovation-content" data-reveal="fade-up" style="--reveal-delay: 120ms">
                 <h2 class="home-display-heading text-sky">Đổi mới</h2>
                 <p>ACONS ứng dụng công nghệ và quy trình phối hợp liên ngành để rút ngắn thời gian triển khai, đồng thời kiểm soát chất lượng công trình ngay từ giai đoạn thiết kế.</p>
                 <ul class="innovation-list">
@@ -264,7 +264,7 @@
 <section class="home-testimonial">
     <div class="container">
         @foreach($testimonials->take(1) as $testimonial)
-            <blockquote>
+            <blockquote data-reveal="fade">
                 <span class="quote-mark">“</span>
                 <p>{{ $testimonial->content }}</p>
                 <footer>{{ $testimonial->customer_name }} <span>{{ $testimonial->company }}</span></footer>
@@ -277,8 +277,8 @@
 @if($partners->isNotEmpty())
 <section class="home-partners">
     <div class="container">
-        <div class="home-kicker home-kicker-centered">Được tin chọn bởi khách hàng và đối tác</div>
-        <div class="partner-row">
+        <div class="home-kicker home-kicker-centered" data-reveal="fade">Được tin chọn bởi khách hàng và đối tác</div>
+        <div class="partner-row" data-reveal="fade" style="--reveal-delay: 100ms">
             @foreach($partners as $partner)
                 <div class="partner-name">
                     @if($partner->logo)
@@ -295,14 +295,14 @@
 
 <section class="home-section home-case-studies" id="tin-tuc">
     <div class="container">
-        <div class="home-kicker">Nghiên cứu điển hình</div>
-        <div class="home-section-heading home-section-heading-light">
+        <div class="home-kicker" data-reveal="fade">Nghiên cứu điển hình</div>
+        <div class="home-section-heading home-section-heading-light" data-reveal="fade-up" style="--reveal-delay: 80ms">
             <h2>Giải pháp cho <span class="text-sky">những bài toán khó</span></h2>
             <a class="btn btn-outline-figma" href="{{ route('projects.index') }}">Xem thêm <i class="bi bi-arrow-up-right"></i></a>
         </div>
         <div class="case-study-grid">
             @forelse($projects->take(3) as $project)
-                <article class="case-study-card">
+                <article class="case-study-card" data-reveal="fade-up" style="--reveal-delay: {{ $loop->index * 80 }}ms">
                     <a href="{{ route('projects.show', $project) }}">
                         <div class="case-study-image">
                             <img src="{{ $project->cover_image ? asset('storage/'.$project->cover_image) : asset('images/project-placeholder.svg') }}" alt="{{ $project->title }}" loading="lazy">
@@ -330,14 +330,14 @@
     <div class="container">
         <div class="contact-orbit">
             <div class="contact-orbit-mark" aria-hidden="true">A</div>
-            <div class="home-kicker home-kicker-centered">Bắt đầu một công trình mới</div>
-            <h2>Cùng ACONS xây dựng<br><span class="text-sky">không gian tương lai</span></h2>
-            <p>Chia sẻ nhu cầu của bạn, đội ngũ ACONS sẽ liên hệ để tư vấn định hướng phù hợp cho công trình.</p>
-            <div class="contact-orbit-actions">
+            <div class="home-kicker home-kicker-centered" data-reveal="fade">Bắt đầu một công trình mới</div>
+            <h2 data-reveal="fade-up" style="--reveal-delay: 80ms">Cùng ACONS xây dựng<br><span class="text-sky">không gian tương lai</span></h2>
+            <p data-reveal="fade-up" style="--reveal-delay: 160ms">Chia sẻ nhu cầu của bạn, đội ngũ ACONS sẽ liên hệ để tư vấn định hướng phù hợp cho công trình.</p>
+            <div class="contact-orbit-actions" data-reveal="fade-up" style="--reveal-delay: 240ms">
                 <a class="btn btn-acons" href="{{ route('contacts.create') }}">Nhận tư vấn <i class="bi bi-arrow-right"></i></a>
                 <a class="btn btn-outline-dark-figma" href="{{ route('projects.index') }}">Hồ sơ năng lực</a>
             </div>
-            <div class="contact-orbit-details">
+            <div class="contact-orbit-details" data-reveal="fade" style="--reveal-delay: 320ms">
                 <div><small>Địa chỉ</small><span>{{ $siteSettings['address'] ?? 'Văn phòng ACONS, Việt Nam' }}</span></div>
                 <div><small>Email</small><a href="mailto:{{ $siteSettings['email'] ?? 'hello@acons.vn' }}">{{ $siteSettings['email'] ?? 'hello@acons.vn' }}</a></div>
                 <div><small>Hotline</small><a href="tel:{{ $siteSettings['hotline'] ?? '' }}">{{ $siteSettings['hotline'] ?? '0900 000 000' }}</a></div>

@@ -20,6 +20,8 @@ class FrontendTest extends TestCase
             ->assertSee('ACONS')
             ->assertSee('id="aconsHeroSlider"', false)
             ->assertSee('data-bs-interval="6500"', false)
+            ->assertSee('data-reveal="fade-up"', false)
+            ->assertSee('data-reveal="fade"', false)
             ->assertSee('Kiến tạo không gian')
             ->assertSee('Thiết kế đồng bộ')
             ->assertSee('Mỗi công trình');
