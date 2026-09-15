@@ -14,6 +14,19 @@
     --acons-muted: #626a70;
     --acons-serif: 'Times New Roman', Times, serif;
     --acons-sans: Inter, 'Segoe UI', Arial, sans-serif;
+    --text-xs: .875rem;
+    --text-sm: .9375rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.375rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.125rem;
+    --text-5xl: 2.5rem;
+    --text-display: 3.1875rem;
+    --section-space-sm: clamp(3.75rem, 5vw, 6rem);
+    --section-space: clamp(4.75rem, 7vw, 8rem);
+    --section-space-lg: clamp(5.5rem, 8vw, 9rem);
 }
 
 html { scroll-behavior: smooth; }
@@ -111,22 +124,36 @@ img { max-width: 100%; }
     max-height: 48px;
     object-fit: contain;
 }
-.site-navbar .navbar-collapse { align-self: stretch; }
-.site-navbar .navbar-nav { height: 100%; gap: .15rem; }
+.site-navbar .navbar-collapse {
+    align-self: stretch;
+    justify-content: center;
+}
+.site-navbar .navbar-nav {
+    height: 100%;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto !important;
+    gap: .15rem;
+    text-align: center;
+}
 .site-navbar .nav-item { display: flex; align-items: center; }
 .site-navbar .nav-link {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #20282d;
     margin: 0 .05rem;
     padding: .68rem .8rem;
     border-radius: 9px;
-    font-size: .68rem;
+    font-size: 1.2rem;
     font-weight: 550;
-    line-height: 1;
+    line-height: 1.2;
+    text-align: center;
     white-space: nowrap;
     transition: color .2s ease, background .2s ease;
 }
-.site-navbar .nav-link > i { margin-left: .3rem; font-size: .55rem; transition: transform .2s ease; }
+.site-navbar .nav-link > i { margin-left: .4rem; font-size: .8rem; transition: transform .2s ease; }
 .site-navbar .nav-link:hover,
 .site-navbar .nav-link.active,
 .site-navbar .nav-mega-item:hover > .nav-link,
@@ -134,7 +161,7 @@ img { max-width: 100%; }
 .site-navbar .nav-mega-item:hover > .nav-link > i,
 .site-navbar .nav-mega-item.is-open > .nav-link > i { transform: rotate(180deg); }
 .site-navbar .nav-cta-item { margin-left: 1.2rem; }
-.site-navbar .nav-cta { padding: .78rem 1.2rem; border-radius: 9px; box-shadow: 0 8px 18px rgba(201, 83, 96, .22); }
+.site-navbar .nav-cta { justify-content: center; padding: .78rem 1.2rem; border-radius: 9px; font-size: 1.3rem; text-align: center; box-shadow: 0 8px 18px rgba(201, 83, 96, .22); }
 .site-navbar .nav-cta i { margin-left: .55rem; }
 .site-navbar .navbar-toggler { border: 0; border-radius: 8px; padding: .55rem; }
 .site-navbar .navbar-toggler:focus { box-shadow: 0 0 0 .15rem rgba(201, 83, 96, .2); }
@@ -1790,9 +1817,9 @@ img { max-width: 100%; }
 @media (max-width: 1199.98px) and (min-width: 992px) {
     .site-navbar .navbar-brand img { max-width: 145px; }
     .site-navbar .navbar-brand { font-size: 1.4rem; }
-    .site-navbar .nav-link { padding-right: .56rem; padding-left: .56rem; font-size: .63rem; }
+    .site-navbar .nav-link { padding-right: .45rem; padding-left: .45rem; font-size: 1.1rem; }
     .site-navbar .nav-cta-item { margin-left: .55rem; }
-    .site-navbar .nav-cta { padding-right: .85rem; padding-left: .85rem; font-size: .65rem; }
+    .site-navbar .nav-cta { padding-right: .8rem; padding-left: .8rem; font-size: 1rem; }
 }
 
 @media (max-width: 991.98px) {
@@ -1816,7 +1843,7 @@ img { max-width: 100%; }
         background: rgba(255, 255, 255, .995) !important;
         box-shadow: 0 22px 45px rgba(11, 21, 31, .12);
     }
-    .site-navbar .navbar-nav { height: auto; gap: 0; }
+    .site-navbar .navbar-nav { height: auto; margin-right: 0; margin-left: 0 !important; gap: 0; text-align: center; }
     .site-navbar .nav-item { display: block; width: 100%; border-bottom: 1px solid var(--acons-line); }
     .site-navbar .nav-link,
     .is-inner-page .site-navbar .nav-link {
@@ -1828,7 +1855,7 @@ img { max-width: 100%; }
         padding: 1rem .2rem;
         color: #20282d;
         border-radius: 0;
-        font-size: .75rem;
+        font-size: 1.15rem;
     }
     .site-navbar .nav-link:hover,
     .site-navbar .nav-link.active,
@@ -2217,4 +2244,436 @@ a.editorial-card:hover > span { color: rgba(255, 255, 255, .55); }
     .about-timeline h3 { margin-top: .6rem; }
     .mega-about-stat { grid-template-columns: auto 1fr; }
     .mega-about-stat em { display: none; }
+}
+
+/* Readable typography scale inspired by the measured Seacons hierarchy. */
+body {
+    font-size: var(--text-base);
+    line-height: 1.625;
+}
+
+.btn-acons,
+.btn-outline-figma,
+.btn-outline-dark-figma,
+.contact-cta-outline,
+.services-cta-light,
+.services-cta-outline {
+    font-size: var(--text-base);
+}
+
+.eyebrow,
+.home-kicker,
+.project-kicker,
+.contact-kicker,
+.services-kicker,
+.editorial-kicker {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+}
+
+/* Header: Seacons uses 15px navigation and 16px action text. */
+.site-navbar .nav-link {
+    font-size: var(--text-sm);
+    line-height: 1.625;
+}
+.site-navbar .nav-link > i { font-size: var(--text-xs); }
+.site-navbar .nav-cta { font-size: var(--text-base); }
+
+/* Mega menus remain compact, but no longer use 7–12px text. */
+.mega-menu-label,
+.mega-service-link small,
+.mega-feature-image span,
+.mega-feature-body > p,
+.mega-feature-body > a,
+.mega-project-sectors span,
+.mega-spotlight-image span,
+.mega-spotlight-body span,
+.mega-epsilon-brand span,
+.mega-epsilon-intro,
+.mega-epsilon-product small,
+.mega-epsilon-product em,
+.mega-epsilon-product p,
+.mega-epsilon-aside p,
+.mega-resource-grid span,
+.mega-report-link small,
+.mega-report-link em,
+.mega-article-image span,
+.mega-article-body > small,
+.mega-article-body > p,
+.mega-article-body > a,
+.mega-contact-links small,
+.mega-contact-summary span,
+.mega-contact-summary a,
+.mega-contact-visual span,
+.mega-contact-aside p,
+.mega-about-stat span,
+.mega-about-stat em {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+}
+.mega-footer-link,
+.mega-project-all,
+.mega-epsilon-aside a,
+.mega-contact-aside a { font-size: var(--text-base); }
+.mega-service-link strong,
+.mega-feature-body > strong,
+.mega-project-sectors strong,
+.mega-spotlight-body > strong,
+.mega-spotlight-body b,
+.mega-epsilon-brand strong,
+.mega-epsilon-product strong,
+.mega-epsilon-aside strong,
+.mega-resource-grid strong,
+.mega-report-link strong,
+.mega-article-body > strong,
+.mega-contact-links strong {
+    font-size: var(--text-base);
+    line-height: 1.4;
+}
+
+/* Base reading text follows Seacons' 16px / 26px rhythm. */
+main p {
+    font-size: var(--text-base) !important;
+    line-height: 1.625;
+}
+main small {
+    font-size: var(--text-sm) !important;
+    line-height: 1.5;
+}
+main li,
+main dd {
+    font-size: var(--text-base) !important;
+    line-height: 1.625;
+}
+main dt,
+main label,
+main [class*="-breadcrumb"],
+main [class*="-meta"] span,
+main [class*="-stats"] span,
+main [class*="-tags"],
+main [class*="-cue"],
+main figcaption span {
+    font-size: var(--text-sm) !important;
+    line-height: 1.5;
+}
+.form-control,
+.form-select,
+.contact-inquiry-form .form-select {
+    font-size: var(--text-base);
+    line-height: 1.5;
+}
+.invalid-feedback,
+.contact-form-alert,
+.contact-form-privacy { font-size: var(--text-sm); }
+
+/* Display and hero titles: about 40–51px instead of oversized 70–180px. */
+.home-hero-title,
+.page-hero h1,
+.project-detail-hero h1,
+.contact-hero h1,
+.services-hero h1,
+.editorial-hero h1 {
+    font-size: clamp(var(--text-5xl), 4.6vw, var(--text-display));
+    line-height: 1.08;
+    letter-spacing: -.035em;
+}
+
+/* Section titles: 30px on small screens and up to 40px on desktop. */
+.home-section-heading h2,
+.home-display-heading,
+.contact-orbit h2,
+.project-detail-page h2,
+.project-team h2,
+.project-contact-cta h2,
+.contact-page h2,
+.contact-services h2,
+.contact-location-content h2,
+.contact-why h2,
+.contact-final-cta h2,
+.services-page h2,
+.services-deliver-intro h2,
+.services-technology h2,
+.services-partners h2,
+.services-final-cta h2,
+.editorial-heading-split h2,
+.about-story-grid h2,
+.epsilon-platform h2,
+.epsilon-ai h2,
+.resources-guides h2,
+.about-team h2,
+.about-journey h2,
+.editorial-final-cta h2,
+.services-delivery-content h3 {
+    font-size: clamp(var(--text-3xl), 3vw, var(--text-5xl));
+    line-height: 1.15;
+    letter-spacing: -.025em;
+}
+
+/* Card and item titles match Seacons' common 22px tier. */
+.home-service-card h3,
+.difference-item h3,
+.case-study-body h3,
+.project-detail-page h3,
+.contact-page h3,
+.services-page h3,
+.editorial-page h3,
+.contact-service-option strong,
+.project-floor-item > span,
+.project-technical-notes strong,
+.resources-directory-grid h2,
+.resources-guide-list strong,
+.about-team-board strong {
+    font-size: var(--text-xl);
+    line-height: 1.35;
+}
+
+.resources-featured-article h3 {
+    font-size: clamp(var(--text-2xl), 2.5vw, var(--text-3xl));
+    line-height: 1.25;
+}
+
+/* Lead copy and emphasized reading text. */
+.home-hero-copy,
+.project-story-intro .project-lead,
+.about-story-grid .about-story-lead,
+.editorial-hero-inner > p,
+.contact-hero-inner > p,
+.services-hero-inner > p {
+    font-size: var(--text-lg) !important;
+    line-height: 1.6;
+}
+.home-testimonial blockquote p,
+.about-voice-grid blockquote > p,
+.about-story-visual span {
+    font-size: clamp(var(--text-xl), 2.2vw, var(--text-4xl)) !important;
+    line-height: 1.4;
+}
+
+/* Supporting labels, links and data values. */
+.home-hero-stats span,
+.achievement-item span,
+.home-service-tags,
+.innovation-visual figcaption span,
+.case-study-image span,
+.project-detail-hero-inner > p,
+.project-scroll-cue,
+.project-heading-note span,
+.project-scale-grid span,
+.project-technical-visual > span,
+.project-technical-notes span,
+.project-mini-stats span,
+.project-compare-half span,
+.project-compare figcaption,
+.project-timeline-step > span,
+.project-related-grid span,
+.contact-hero-stats span,
+.contact-info-grid span,
+.contact-call-direct span,
+.services-hero-stats span,
+.services-scroll-cue,
+.services-overview-card > span,
+.services-delivery-visual figcaption,
+.services-applications h4,
+.services-applications span,
+.services-benefit-grid article > span,
+.services-difference-stats span,
+.services-project-grid span,
+.services-process-step > span,
+.services-tech-cards span,
+.services-tech-stats span,
+.editorial-hero-stats span,
+.editorial-card > span,
+.editorial-process article > span,
+.editorial-project-grid span,
+.epsilon-ai-cards span,
+.resources-directory-grid > a > span,
+.resources-featured-article span,
+.resources-article-grid article span,
+.resources-guide-list > a > span,
+.resources-news-strip span,
+.about-team-stat span,
+.about-team-board span,
+.about-timeline span,
+.about-voice-grid footer span {
+    font-size: var(--text-sm) !important;
+    line-height: 1.5;
+}
+
+.home-service-card > a,
+.home-project-filter,
+.innovation-list span,
+.case-study-link,
+.contact-orbit-details a,
+.project-inline-link,
+.project-hero-meta strong,
+.project-heading-note strong,
+.project-accordion .accordion-body,
+.project-coordination li strong,
+.project-coordination li span,
+.contact-info-grid p,
+.contact-inquiry-intro li,
+.contact-direction-link,
+.contact-faq-grid > div:first-child > a,
+.contact-faq-accordion .accordion-body,
+.services-text-link,
+.services-detail-columns li,
+.services-detail-link,
+.services-faq-accordion .accordion-body,
+.editorial-text-link,
+.editorial-check-list li > span,
+.resources-news-strip a {
+    font-size: var(--text-base) !important;
+    line-height: 1.625;
+}
+
+.innovation-list strong,
+.project-accordion .accordion-button,
+.contact-faq-accordion .accordion-button,
+.services-faq-accordion .accordion-button {
+    font-size: var(--text-lg);
+    line-height: 1.45;
+}
+
+/* Footer mirrors Seacons: 24px column headings, 16px links, 15px metadata. */
+.site-footer h2 { font-size: var(--text-2xl); }
+.footer-brand p,
+.site-footer a,
+.footer-contact p { font-size: var(--text-base); }
+.footer-brand small,
+.footer-bottom,
+.footer-socials a { font-size: var(--text-sm); }
+
+@media (max-width: 575.98px) {
+    .home-hero-title,
+    .page-hero h1,
+    .project-detail-hero h1,
+    .contact-hero h1,
+    .services-hero h1,
+    .editorial-hero h1 {
+        font-size: var(--text-5xl);
+    }
+}
+
+/* Compact vertical rhythm: less empty space while content can still grow naturally. */
+.section-space,
+.home-section,
+.home-contact-cta,
+.project-section,
+.project-scale,
+.project-technical,
+.project-contact-cta,
+.contact-why,
+.contact-faq,
+.contact-final-cta,
+.services-overview,
+.services-difference,
+.services-projects,
+.services-process,
+.services-partners,
+.services-faq,
+.services-final-cta,
+.editorial-section,
+.editorial-final-cta,
+.epsilon-platform,
+.about-journey {
+    padding-top: var(--section-space);
+    padding-bottom: var(--section-space);
+}
+
+.home-testimonial,
+.home-partners,
+.contact-info-band {
+    padding-top: var(--section-space-sm);
+    padding-bottom: var(--section-space-sm);
+}
+
+.project-story,
+.project-outcomes { padding-top: var(--section-space-lg); }
+.project-timeline { padding: var(--section-space) 0 0; }
+.project-scope-grid { padding-bottom: var(--section-space); }
+.project-team { padding-top: var(--section-space); }
+.contact-services { padding: var(--section-space) 0 2.5rem; }
+.contact-inquiry { padding: var(--section-space) 0 var(--section-space-lg); }
+.services-deliver-intro { padding: var(--section-space) 0 2.5rem; }
+.services-delivery-row { padding: var(--section-space-sm) 0; }
+.services-technology { padding: var(--section-space) 0 0; }
+.resources-directory { padding-bottom: 3rem; }
+.page-hero { padding: 8.5rem 0 4rem; }
+
+.home-kicker { margin-bottom: 2rem; }
+.home-section-heading { margin-bottom: 3rem; }
+.home-difference .home-display-heading { margin-bottom: 3.5rem; }
+.project-section-heading,
+.editorial-heading-split { margin-bottom: clamp(2.75rem, 4vw, 4.5rem); }
+.project-scale h2,
+.project-technical h2,
+.project-timeline h2 { margin-bottom: 2.5rem; }
+
+.home-hero {
+    min-height: clamp(680px, calc(100vh - 88px), 760px);
+}
+.project-detail-hero {
+    min-height: clamp(650px, calc(100vh - 88px), 740px);
+}
+.contact-hero {
+    min-height: clamp(620px, calc(100vh - 88px), 720px);
+}
+.services-hero {
+    min-height: clamp(650px, calc(100vh - 88px), 740px);
+}
+.editorial-hero {
+    min-height: clamp(620px, calc(100vh - 88px), 720px);
+}
+
+@media (min-width: 992px) {
+    .home-service-card { min-height: 350px; }
+    .home-project-grid { min-height: 600px; }
+    .contact-orbit { min-height: 700px; }
+
+    .project-solution-image { min-height: 640px; }
+    .project-technical-card,
+    .project-technical-visual { min-height: 480px; }
+    .project-compare { min-height: 540px; }
+    .project-gallery-grid { min-height: 640px; }
+    .project-timeline-step { min-height: 275px; }
+
+    .contact-info-grid > div { min-height: 175px; }
+    .contact-service-option { min-height: 125px; }
+    .contact-location,
+    .contact-location-map,
+    .contact-location-map iframe,
+    .contact-map-placeholder { min-height: 520px; }
+    .contact-benefit-grid article { min-height: 185px; }
+
+    .services-overview-card { min-height: 285px; }
+    .services-delivery-visual,
+    .services-delivery-visual img { min-height: 500px; }
+    .services-benefit-grid article { min-height: 230px; }
+    .services-project-grid a { min-height: 380px; }
+    .services-tech-cards article { min-height: 190px; }
+
+    .editorial-card { min-height: 260px; }
+    .editorial-process article { min-height: 180px; }
+    .editorial-project-grid a { min-height: 380px; }
+    .epsilon-blueprint { min-height: 480px; }
+    .epsilon-ai-cards article { min-height: 225px; }
+    .resources-directory-grid > a { min-height: 145px; }
+    .resources-featured-article,
+    .resources-featured-article > img { min-height: 380px; }
+    .resources-article-grid article { min-height: 300px; }
+    .about-team-board > div { min-height: 185px; }
+    .about-voice-grid blockquote { min-height: 260px; }
+    .about-partner-grid > div { min-height: 100px; }
+}
+
+@media (max-width: 575.98px) {
+    .home-hero { min-height: 700px; }
+    .project-detail-hero,
+    .contact-hero,
+    .editorial-hero { min-height: 680px; }
+    .services-hero { min-height: 710px; }
+    .page-hero { padding: 7.5rem 0 3.25rem; }
+    .home-section-heading,
+    .project-section-heading,
+    .editorial-heading-split { margin-bottom: 2.5rem; }
 }
