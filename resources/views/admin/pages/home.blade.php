@@ -43,7 +43,7 @@
                                             </div>
                                             <div class="row g-3">
                                                 @foreach($slideFields as $field)
-                                                    @include('admin.pages.partials.home-content-field', [
+                                                    @include('admin.pages.partials.content-field', [
                                                         'field' => $field,
                                                         'label' => str($field['label'])->after(' · '),
                                                         'columnClass' => $field['type'] === 'textarea' ? 'col-12' : 'col-lg-4',
@@ -74,7 +74,7 @@
                                                             default => 'col-md-5',
                                                         };
                                                     @endphp
-                                                    @include('admin.pages.partials.home-content-field', [
+                                                    @include('admin.pages.partials.content-field', [
                                                         'field' => $field,
                                                         'label' => str($field['label'])->after(' · '),
                                                         'columnClass' => $fieldColumn,
@@ -107,7 +107,7 @@
                                             </div>
                                             <div class="row g-3">
                                                 @foreach($groupFields as $field)
-                                                    @include('admin.pages.partials.home-content-field', [
+                                                    @include('admin.pages.partials.content-field', [
                                                         'field' => $field,
                                                         'label' => str($field['label'])->after(' · '),
                                                         'columnClass' => $field['type'] === 'textarea' ? 'col-12' : 'col-md-6',
@@ -136,7 +136,7 @@
                                             </div>
                                             <div class="row g-3 align-items-start">
                                                 @foreach($itemFields as $field)
-                                                    @include('admin.pages.partials.home-content-field', [
+                                                    @include('admin.pages.partials.content-field', [
                                                         'field' => $field,
                                                         'label' => str($field['label'])->after(' · '),
                                                         'columnClass' => $field['type'] === 'textarea' ? 'col-md-8' : 'col-md-4',
@@ -162,7 +162,7 @@
                                         </div>
                                         <div class="row g-3">
                                             @foreach($ctaContentFields as $field)
-                                                @include('admin.pages.partials.home-content-field', [
+                                                @include('admin.pages.partials.content-field', [
                                                     'field' => $field,
                                                     'columnClass' => $field['type'] === 'textarea' ? 'col-12' : 'col-lg-4',
                                                 ])
@@ -176,7 +176,7 @@
                                         </div>
                                         <div class="row g-3">
                                             @foreach($ctaButtonFields as $field)
-                                                @include('admin.pages.partials.home-content-field', [
+                                                @include('admin.pages.partials.content-field', [
                                                     'field' => $field,
                                                     'columnClass' => 'col-md-6',
                                                 ])
@@ -187,7 +187,7 @@
                             @else
                                 <div class="row g-3">
                                     @foreach($section['fields'] as $field)
-                                        @include('admin.pages.partials.home-content-field', ['field' => $field])
+                                        @include('admin.pages.partials.content-field', ['field' => $field])
                                     @endforeach
                                 </div>
                             @endif

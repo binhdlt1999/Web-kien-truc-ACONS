@@ -24,6 +24,53 @@ class AdminInnerPageContentTest extends TestCase
         }
     }
 
+    public function test_inner_page_editors_group_related_fields_for_admins(): void
+    {
+        $admin = User::factory()->create(['is_admin' => true]);
+        $expectedGroups = [
+            'services' => [
+                'services-hero-noi-dung-chinh',
+                'services-hero-nut-hanh-dong',
+                'services-headings-tong-quan',
+                'services-headings-faq',
+            ],
+            'contact' => [
+                'contact-hero-noi-dung-chinh',
+                'contact-form-chon-dich-vu',
+                'contact-form-bieu-mau',
+                'contact-support-vi-tri',
+            ],
+            'about' => [
+                'about-hero-noi-dung-chinh',
+                'about-story-noi-dung-chinh',
+                'about-identity-gia-tri',
+                'about-identity-doi-ngu',
+            ],
+            'epsilon' => [
+                'epsilon-hero-noi-dung-chinh',
+                'epsilon-capabilities-noi-dung-chinh',
+                'epsilon-capabilities-bim',
+                'epsilon-capabilities-ai-lab',
+            ],
+            'resources' => [
+                'resources-hero-noi-dung-chinh',
+                'resources-content-bai-viet',
+                'resources-content-du-an',
+                'resources-guides-tin-tuc',
+            ],
+        ];
+
+        foreach ($expectedGroups as $page => $groups) {
+            $response = $this->actingAs($admin)
+                ->get(route('admin.pages.edit', $page))
+                ->assertOk();
+
+            foreach ($groups as $group) {
+                $response->assertSee('data-page-editor-group="'.$group.'"', false);
+            }
+        }
+    }
+
     public function test_admin_can_update_every_inner_page_and_public_pages_use_the_saved_content(): void
     {
         $admin = User::factory()->create(['is_admin' => true]);

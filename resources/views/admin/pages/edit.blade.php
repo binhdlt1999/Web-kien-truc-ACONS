@@ -31,19 +31,55 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row g-3">
-                                @foreach($section['fields'] as $field)
-                                    <div class="{{ $field['type'] === 'textarea' ? 'col-12' : 'col-lg-6' }}">
-                                        <label for="{{ $field['key'] }}" class="form-label fw-semibold">{{ $field['label'] }}</label>
-                                        @if($field['type'] === 'textarea')
-                                            <textarea id="{{ $field['key'] }}" name="content[{{ $field['key'] }}]" rows="3" maxlength="{{ $field['max'] }}" class="form-control @error('content.'.$field['key']) is-invalid @enderror">{{ old('content.'.$field['key'], $content[$field['key']] ?? $field['fallback']) }}</textarea>
-                                        @else
-                                            <input id="{{ $field['key'] }}" name="content[{{ $field['key'] }}]" type="text" maxlength="{{ $field['max'] }}" value="{{ old('content.'.$field['key'], $content[$field['key']] ?? $field['fallback']) }}" class="form-control @error('content.'.$field['key']) is-invalid @enderror">
-                                        @endif
-                                        @error('content.'.$field['key'])
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                            @php
+                                $editorGroups = collect($section['fields'])->groupBy(function (array $field): string {
+                                    if (str_contains($field['label'], ' · ')) {
+                                        return (string) str($field['label'])->before(' · ');
+                                    }
+
+                                    return str_contains($field['key'], '_button') ? 'Nút hành động' : 'Nội dung chính';
+                                });
+                            @endphp
+                            <div class="d-grid gap-3">
+                                @foreach($editorGroups as $groupTitle => $groupFields)
+                                    @php
+                                        $textFieldCount = $groupFields->where('type', 'text')->count();
+                                        $hasTextarea = $groupFields->contains(fn (array $field): bool => $field['type'] === 'textarea');
+                                    @endphp
+                                    <section
+                                        class="border border-secondary-subtle rounded-3 bg-body-tertiary p-3 p-lg-4"
+                                        data-page-editor-group="{{ $pageKey }}-{{ $section['key'] }}-{{ str($groupTitle)->slug() }}"
+                                    >
+                                        <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="badge rounded-pill text-bg-light border text-primary">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                                                <h3 class="h6 fw-semibold mb-0">{{ $groupTitle }}</h3>
+                                            </div>
+                                            <span class="small text-secondary">{{ $groupFields->count() }} trường nội dung</span>
+                                        </div>
+                                        <div class="row g-3 align-items-start">
+                                            @foreach($groupFields as $field)
+                                                @php
+                                                    $fieldColumn = match (true) {
+                                                        $field['type'] === 'textarea' && $groupFields->count() === 2 => 'col-md-8',
+                                                        $field['type'] === 'textarea' => 'col-12',
+                                                        $textFieldCount >= 3 => 'col-lg-4',
+                                                        $textFieldCount === 1 && $hasTextarea => 'col-md-4',
+                                                        default => 'col-md-6',
+                                                    };
+                                                    $fieldLabel = str_contains($field['label'], ' · ')
+                                                        ? str($field['label'])->after(' · ')
+                                                        : $field['label'];
+                                                @endphp
+                                                @include('admin.pages.partials.content-field', [
+                                                    'field' => $field,
+                                                    'label' => $fieldLabel,
+                                                    'columnClass' => $fieldColumn,
+                                                    'rows' => 3,
+                                                ])
+                                            @endforeach
+                                        </div>
+                                    </section>
                                 @endforeach
                             </div>
                         </div>
