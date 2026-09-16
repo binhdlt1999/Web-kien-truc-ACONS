@@ -3,6 +3,7 @@
 @section('meta_description', 'Epsilon là bộ phận công nghệ của ACONS, ứng dụng BIM, dữ liệu và AI vào thiết kế, phối hợp và quản lý công trình.')
 
 @php
+    $pageContent = static fn (string $key, string $fallback): string => filled($siteSettings[$key] ?? null) ? (string) $siteSettings[$key] : $fallback;
     $heroProject = $featuredProjects->first();
     $heroImage = $heroProject?->cover_image
         ? asset('storage/'.$heroProject->cover_image)
@@ -14,12 +15,12 @@
     <header class="editorial-hero epsilon-hero" style="--editorial-hero-image: url('{{ $heroImage }}')" data-reveal="fade">
         <div class="container editorial-hero-inner">
             <div class="editorial-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Epsilon</div>
-            <div class="editorial-kicker editorial-kicker-light"><i class="bi bi-hexagon-fill"></i> ACONS Technology Division</div>
-            <h1>Công nghệ cho<br><em>những công trình</em><br>chính xác hơn</h1>
-            <p>Epsilon biến dữ liệu thiết kế thành một ngôn ngữ chung, giúp chủ đầu tư, kiến trúc sư và kỹ sư phối hợp nhanh hơn trong toàn bộ vòng đời dự án.</p>
+            <div class="editorial-kicker editorial-kicker-light"><i class="bi bi-hexagon-fill"></i> {{ $pageContent('epsilon_hero_kicker', 'ACONS Technology Division') }}</div>
+            <h1>{{ $pageContent('epsilon_hero_title', 'Công nghệ cho những công trình chính xác hơn') }}</h1>
+            <p>{{ $pageContent('epsilon_hero_description', 'Epsilon biến dữ liệu thiết kế thành một ngôn ngữ chung, giúp chủ đầu tư, kiến trúc sư và kỹ sư phối hợp nhanh hơn trong toàn bộ vòng đời dự án.') }}</p>
             <div class="editorial-actions">
-                <a href="#epsilon-capabilities" class="btn btn-acons">Khám phá giải pháp <i class="bi bi-arrow-down"></i></a>
-                <a href="{{ route('contacts.create') }}" class="btn btn-outline-figma">Trao đổi cùng chuyên gia</a>
+                <a href="#epsilon-capabilities" class="btn btn-acons">{{ $pageContent('epsilon_hero_primary_button', 'Khám phá giải pháp') }} <i class="bi bi-arrow-down"></i></a>
+                <a href="{{ route('contacts.create') }}" class="btn btn-outline-figma">{{ $pageContent('epsilon_hero_secondary_button', 'Trao đổi cùng chuyên gia') }}</a>
             </div>
             <div class="epsilon-orbit-stage" aria-hidden="true">
                 <span></span><span></span><span></span><span></span>
@@ -36,8 +37,8 @@
     <section class="editorial-section epsilon-capabilities" id="epsilon-capabilities" data-reveal="fade-up">
         <div class="container">
             <div class="editorial-heading-split">
-                <div><div class="editorial-kicker">Năng lực số</div><h2>Một hệ công nghệ<br>cho toàn dự án</h2></div>
-                <p>Công nghệ không thay thế tư duy thiết kế. Epsilon giúp đội ngũ ACONS kiểm chứng ý tưởng, nhận diện xung đột sớm và kiểm soát từng thay đổi bằng dữ liệu.</p>
+                <div><div class="editorial-kicker">{{ $pageContent('epsilon_capabilities_kicker', 'Năng lực số') }}</div><h2>{{ $pageContent('epsilon_capabilities_title', 'Một hệ công nghệ cho toàn dự án') }}</h2></div>
+                <p>{{ $pageContent('epsilon_capabilities_description', 'Công nghệ không thay thế tư duy thiết kế. Epsilon giúp đội ngũ ACONS kiểm chứng ý tưởng, nhận diện xung đột sớm và kiểm soát từng thay đổi bằng dữ liệu.') }}</p>
             </div>
             <div class="editorial-card-grid editorial-card-grid-three">
                 <a href="#bim" class="editorial-card"><span>01</span><i class="bi bi-box"></i><h3>BIM Coordination</h3><p>Phối hợp kiến trúc, kết cấu và MEP trong một mô hình thống nhất.</p><small>Khám phá <i class="bi bi-arrow-down-right"></i></small></a>
@@ -58,8 +59,8 @@
             </div>
             <div class="epsilon-platform-content">
                 <div class="editorial-kicker editorial-kicker-light">01 / BIM Coordination</div>
-                <h2>Thấy vấn đề trước khi<br>nó xuất hiện tại công trường</h2>
-                <p>Mô hình BIM cho phép các bộ môn làm việc trên cùng một nguồn thông tin, giảm sai khác giữa thiết kế và thi công.</p>
+                <h2>{{ $pageContent('epsilon_bim_title', 'Thấy vấn đề trước khi nó xuất hiện tại công trường') }}</h2>
+                <p>{{ $pageContent('epsilon_bim_description', 'Mô hình BIM cho phép các bộ môn làm việc trên cùng một nguồn thông tin, giảm sai khác giữa thiết kế và thi công.') }}</p>
                 <ul class="editorial-check-list">
                     <li><i class="bi bi-check2"></i><span><strong>Phối hợp đa bộ môn</strong>Kiến trúc, kết cấu và kỹ thuật được rà soát đồng thời.</span></li>
                     <li><i class="bi bi-check2"></i><span><strong>Kiểm tra xung đột</strong>Phát hiện sớm điểm giao cắt trước giai đoạn triển khai.</span></li>
@@ -73,8 +74,8 @@
         <div class="container epsilon-ai-grid">
             <div>
                 <div class="editorial-kicker">02 / AI Lab</div>
-                <h2>Tri thức dự án<br>được kích hoạt</h2>
-                <p>AI Lab là không gian thử nghiệm các công cụ hỗ trợ đội ngũ đánh giá dữ liệu, so sánh phương án và tìm kiếm thông tin kỹ thuật nhanh hơn.</p>
+                <h2>{{ $pageContent('epsilon_ai_title', 'Tri thức dự án được kích hoạt') }}</h2>
+                <p>{{ $pageContent('epsilon_ai_description', 'AI Lab là không gian thử nghiệm các công cụ hỗ trợ đội ngũ đánh giá dữ liệu, so sánh phương án và tìm kiếm thông tin kỹ thuật nhanh hơn.') }}</p>
                 <a href="{{ route('contacts.create') }}" class="editorial-text-link">Đề xuất bài toán cùng Epsilon <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="epsilon-ai-cards">
@@ -89,8 +90,8 @@
     <section class="editorial-section editorial-section-soft" id="digital-workflow" data-reveal="fade-up">
         <div class="container">
             <div class="editorial-heading-split">
-                <div><div class="editorial-kicker">03 / Digital workflow</div><h2>Dòng thông tin<br>không đứt gãy</h2></div>
-                <p>Từ brief ban đầu đến hồ sơ bàn giao, mỗi quyết định đều có ngữ cảnh, người phụ trách và trạng thái rõ ràng.</p>
+                <div><div class="editorial-kicker">{{ $pageContent('epsilon_workflow_kicker', '03 / Digital workflow') }}</div><h2>{{ $pageContent('epsilon_workflow_title', 'Dòng thông tin không đứt gãy') }}</h2></div>
+                <p>{{ $pageContent('epsilon_workflow_description', 'Từ brief ban đầu đến hồ sơ bàn giao, mỗi quyết định đều có ngữ cảnh, người phụ trách và trạng thái rõ ràng.') }}</p>
             </div>
             <div class="editorial-process">
                 @foreach([
@@ -109,7 +110,7 @@
     @if($featuredProjects->isNotEmpty())
         <section class="editorial-section editorial-projects" data-reveal="fade-up">
             <div class="container">
-                <div class="editorial-heading-split"><div><div class="editorial-kicker">Ứng dụng thực tế</div><h2>Dự án được hỗ trợ<br>bởi dữ liệu</h2></div><a href="{{ route('projects.index') }}" class="editorial-text-link">Xem tất cả dự án <i class="bi bi-arrow-right"></i></a></div>
+                <div class="editorial-heading-split"><div><div class="editorial-kicker">{{ $pageContent('epsilon_projects_kicker', 'Ứng dụng thực tế') }}</div><h2>{{ $pageContent('epsilon_projects_title', 'Dự án được hỗ trợ bởi dữ liệu') }}</h2></div><a href="{{ route('projects.index') }}" class="editorial-text-link">Xem tất cả dự án <i class="bi bi-arrow-right"></i></a></div>
                 <div class="editorial-project-grid">
                     @foreach($featuredProjects as $project)
                         @php($projectCover = $project->cover_image ? asset('storage/'.$project->cover_image) : asset('images/project-placeholder.svg'))
@@ -121,7 +122,7 @@
     @endif
 
     <section class="editorial-final-cta editorial-final-cta-dark" data-reveal="fade-up">
-        <div class="container"><div class="editorial-kicker editorial-kicker-light">Kết nối công nghệ và thiết kế</div><h2>Bắt đầu một dự án<br>thông minh hơn</h2><p>Chia sẻ bài toán của bạn để ACONS và Epsilon đề xuất luồng triển khai phù hợp.</p><a href="{{ route('contacts.create') }}" class="btn btn-acons">Trao đổi cùng chúng tôi <i class="bi bi-arrow-right"></i></a></div>
+        <div class="container"><div class="editorial-kicker editorial-kicker-light">{{ $pageContent('epsilon_cta_kicker', 'Kết nối công nghệ và thiết kế') }}</div><h2>{{ $pageContent('epsilon_cta_title', 'Bắt đầu một dự án thông minh hơn') }}</h2><p>{{ $pageContent('epsilon_cta_description', 'Chia sẻ bài toán của bạn để ACONS và Epsilon đề xuất luồng triển khai phù hợp.') }}</p><a href="{{ route('contacts.create') }}" class="btn btn-acons">{{ $pageContent('epsilon_cta_button', 'Trao đổi cùng chúng tôi') }} <i class="bi bi-arrow-right"></i></a></div>
     </section>
 </article>
 @endsection

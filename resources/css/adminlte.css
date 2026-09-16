@@ -12,11 +12,96 @@
 :root {
   --bs-primary: #1f3a32;
   --bs-primary-rgb: 31, 58, 50;
+  --acons-admin-accent: #c95360;
+  --acons-admin-sidebar: #101b17;
 }
 
-.app-sidebar { --lte-sidebar-bg: #14251f; }
+.app-sidebar { --lte-sidebar-bg: var(--acons-admin-sidebar); }
+.brand-link { display: flex; gap: .7rem; align-items: center; }
+.brand-symbol {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: #fff;
+  border-radius: 9px;
+  background: var(--acons-admin-accent);
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+}
 .brand-text { letter-spacing: .08em; }
+.brand-text small { color: rgba(255, 255, 255, .48); font-size: .62rem; letter-spacing: .14em; }
 .sidebar-brand { border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.sidebar-menu .nav-header { margin-top: .8rem; color: rgba(255, 255, 255, .4); font-size: .68rem; letter-spacing: .12em; }
+.sidebar-menu .nav-link { border-radius: .45rem; }
+.sidebar-menu .nav-link.active { box-shadow: 0 8px 24px rgba(0, 0, 0, .16); }
+
+.app-content-header { padding-top: 1.35rem; padding-bottom: 1.15rem; }
+.app-content { padding-bottom: 2rem; }
+.admin-page-eyebrow { letter-spacing: .12em; }
+.card { border: 0; box-shadow: 0 5px 22px rgba(16, 27, 23, .06); }
+.card.card-outline { border-top-width: 3px; }
+.card-header { padding: 1rem 1.25rem; }
+.card-body { padding: 1.25rem; }
+.table > :not(caption) > * > * { padding: .9rem 1rem; }
+
+.small-box { overflow: hidden; border: 0; border-radius: var(--bs-border-radius-lg); box-shadow: 0 8px 24px rgba(16, 27, 23, .1); }
+.small-box .inner { position: relative; z-index: 1; padding: 1.25rem; }
+.small-box .inner h3 { margin-bottom: .2rem; font-size: 2rem; }
+.small-box .inner p { margin-bottom: 0; font-weight: 600; }
+.small-box .small-box-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1.15rem;
+  color: rgba(255, 255, 255, .25);
+  font-size: 3.6rem;
+  line-height: 1;
+  transition: transform .25s ease;
+}
+.small-box:hover .small-box-icon { transform: scale(1.06); }
+.small-box .small-box-footer { display: block; padding: .65rem 1.25rem; background: rgba(0, 0, 0, .12); font-size: .84rem; }
+
+.admin-page-card { transition: transform .2s ease, box-shadow .2s ease; }
+.admin-page-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(16, 27, 23, .1); }
+.admin-page-icon { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 12px; font-size: 1.25rem; }
+.admin-page-card .progress { height: 7px; }
+.admin-sticky-card { position: sticky; top: 1rem; }
+.admin-sticky-card .list-group-item { padding: .8rem 1.1rem; font-size: .88rem; }
+.admin-media-thumb { width: 72px; height: 52px; flex: 0 0 auto; border-radius: 8px; object-fit: cover; }
+.admin-cover-preview { max-height: 230px; object-fit: cover; }
+.admin-avatar,
+.admin-avatar-placeholder {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.admin-avatar-placeholder { color: #6c757d; border: 1px solid var(--bs-border-color); background: var(--bs-tertiary-bg); }
+.admin-copy-cell { max-width: 420px; color: var(--bs-secondary-color); }
+.admin-profile-preview { display: block; width: 110px; height: 110px; border-radius: 50%; object-fit: cover; }
+.admin-logo-shell {
+  display: grid;
+  width: 88px;
+  height: 52px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: .5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 8px;
+  background: #fff;
+}
+.admin-logo-shell img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.admin-partner-preview { display: grid; min-height: 150px; place-items: center; padding: 1.5rem; border: 1px solid var(--bs-border-color); border-radius: 8px; background: #fff; }
+.admin-partner-preview img { max-width: 260px; max-height: 100px; object-fit: contain; }
+
+@media (max-width: 767.98px) {
+  .app-content-header .d-flex { align-items: flex-start !important; flex-direction: column; }
+  .app-content-header [class*='btn'] { width: 100%; }
+  .admin-sticky-card { position: static; }
+}
 
 /*
  * Option B: compile from source to customise SCSS variables. Comment out

@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        View::composer(['layouts.app', 'home', 'contact'], function ($view): void {
+        View::composer(['layouts.app', 'home', 'contact', 'services.index', 'about', 'epsilon', 'resources'], function ($view): void {
             $settings = Schema::hasTable('settings') ? Setting::publicValues() : [];
             $view->with('siteSettings', $settings);
         });

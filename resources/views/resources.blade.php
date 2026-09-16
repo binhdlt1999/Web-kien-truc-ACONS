@@ -3,6 +3,7 @@
 @section('meta_description', 'Thư viện dự án, bài viết, tin tức và kiến thức chuyên môn về kiến trúc, nội thất và xây dựng từ ACONS.')
 
 @php
+    $pageContent = static fn (string $key, string $fallback): string => filled($siteSettings[$key] ?? null) ? (string) $siteSettings[$key] : $fallback;
     $featuredArticle = $articles->first();
     $featuredArticleImage = $featuredArticle?->cover_image
         ? asset('storage/'.$featuredArticle->cover_image)
@@ -14,12 +15,12 @@
     <header class="editorial-hero resources-hero" data-reveal="fade">
         <div class="container editorial-hero-inner">
             <div class="editorial-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Tài nguyên</div>
-            <div class="editorial-kicker">Trung tâm kiến thức ACONS</div>
-            <h1>Góc nhìn tạo nên<br><em>công trình bền vững</em></h1>
-            <p>Khám phá hồ sơ dự án, kinh nghiệm thiết kế, kiến thức thi công và những câu chuyện đang định hình cách ACONS kiến tạo không gian.</p>
+            <div class="editorial-kicker">{{ $pageContent('resources_hero_kicker', 'Trung tâm kiến thức ACONS') }}</div>
+            <h1>{{ $pageContent('resources_hero_title', 'Góc nhìn tạo nên công trình bền vững') }}</h1>
+            <p>{{ $pageContent('resources_hero_description', 'Khám phá hồ sơ dự án, kinh nghiệm thiết kế, kiến thức thi công và những câu chuyện đang định hình cách ACONS kiến tạo không gian.') }}</p>
             <div class="editorial-actions">
-                <a href="#articles" class="btn btn-acons">Bài viết mới nhất <i class="bi bi-arrow-down"></i></a>
-                <a href="#project-files" class="btn btn-outline-dark-figma">Xem hồ sơ dự án</a>
+                <a href="#articles" class="btn btn-acons">{{ $pageContent('resources_hero_primary_button', 'Bài viết mới nhất') }} <i class="bi bi-arrow-down"></i></a>
+                <a href="#project-files" class="btn btn-outline-dark-figma">{{ $pageContent('resources_hero_secondary_button', 'Xem hồ sơ dự án') }}</a>
             </div>
             <div class="resources-hero-art" aria-hidden="true"><span>R</span><i></i><i></i><i></i></div>
         </div>
@@ -38,7 +39,7 @@
 
     <section class="editorial-section resources-feature" id="articles" data-reveal="fade-up">
         <div class="container">
-            <div class="editorial-heading-split"><div><div class="editorial-kicker">Mới nhất</div><h2>Góc nhìn<br>chuyên môn</h2></div><p>Những phân tích ngắn gọn giúp chủ đầu tư hiểu rõ hơn về không gian, vật liệu, chi phí và quy trình triển khai.</p></div>
+            <div class="editorial-heading-split"><div><div class="editorial-kicker">{{ $pageContent('resources_articles_kicker', 'Mới nhất') }}</div><h2>{{ $pageContent('resources_articles_title', 'Góc nhìn chuyên môn') }}</h2></div><p>{{ $pageContent('resources_articles_description', 'Những phân tích ngắn gọn giúp chủ đầu tư hiểu rõ hơn về không gian, vật liệu, chi phí và quy trình triển khai.') }}</p></div>
             @if($featuredArticle)
                 <a href="{{ route('articles.show', $featuredArticle) }}" class="resources-featured-article">
                     <img src="{{ $featuredArticleImage }}" alt="{{ $featuredArticle->title }}">
@@ -69,7 +70,7 @@
 
     <section class="editorial-section editorial-section-dark resources-project-files" id="project-files" data-reveal="fade-up">
         <div class="container">
-            <div class="editorial-heading-split"><div><div class="editorial-kicker editorial-kicker-light">Hồ sơ dự án</div><h2>Giải pháp phía sau<br>mỗi công trình</h2></div><a href="{{ route('projects.index') }}" class="editorial-text-link editorial-text-link-light">Toàn bộ dự án <i class="bi bi-arrow-right"></i></a></div>
+            <div class="editorial-heading-split"><div><div class="editorial-kicker editorial-kicker-light">{{ $pageContent('resources_projects_kicker', 'Hồ sơ dự án') }}</div><h2>{{ $pageContent('resources_projects_title', 'Giải pháp phía sau mỗi công trình') }}</h2></div><a href="{{ route('projects.index') }}" class="editorial-text-link editorial-text-link-light">Toàn bộ dự án <i class="bi bi-arrow-right"></i></a></div>
             <div class="editorial-project-grid">
                 @forelse($featuredProjects as $project)
                     @php($projectCover = $project->cover_image ? asset('storage/'.$project->cover_image) : asset('images/project-placeholder.svg'))
@@ -83,7 +84,7 @@
 
     <section class="editorial-section resources-guides" id="guides" data-reveal="fade-up">
         <div class="container resources-guides-grid">
-            <div><div class="editorial-kicker">Cẩm nang ACONS</div><h2>Kiến thức cần biết<br>trước khi bắt đầu</h2><p>Các nội dung được tổ chức theo từng giai đoạn để bạn dễ tìm đúng thông tin đang cần.</p></div>
+            <div><div class="editorial-kicker">{{ $pageContent('resources_guides_kicker', 'Cẩm nang ACONS') }}</div><h2>{{ $pageContent('resources_guides_title', 'Kiến thức cần biết trước khi bắt đầu') }}</h2><p>{{ $pageContent('resources_guides_description', 'Các nội dung được tổ chức theo từng giai đoạn để bạn dễ tìm đúng thông tin đang cần.') }}</p></div>
             <div class="resources-guide-list">
                 <a href="{{ route('services.index') }}"><span>01</span><div><strong>Chọn phạm vi dịch vụ</strong><small>Hiểu sự khác nhau giữa thiết kế, thi công và gói đồng bộ.</small></div><i class="bi bi-arrow-up-right"></i></a>
                 <a href="{{ route('projects.index') }}"><span>02</span><div><strong>Xác định phong cách</strong><small>Tham khảo công trình theo loại hình và ngôn ngữ kiến trúc.</small></div><i class="bi bi-arrow-up-right"></i></a>
@@ -93,7 +94,7 @@
     </section>
 
     <section class="resources-news-strip" id="news" data-reveal="fade">
-        <div class="container"><span>Tin tức ACONS</span><p>Theo dõi hoạt động mới, câu chuyện công trường và các chương trình chuyên môn của đội ngũ.</p><a href="{{ route('contacts.create') }}">Kết nối với ACONS <i class="bi bi-arrow-right"></i></a></div>
+        <div class="container"><span>{{ $pageContent('resources_news_label', 'Tin tức ACONS') }}</span><p>{{ $pageContent('resources_news_description', 'Theo dõi hoạt động mới, câu chuyện công trường và các chương trình chuyên môn của đội ngũ.') }}</p><a href="{{ route('contacts.create') }}">{{ $pageContent('resources_news_button', 'Kết nối với ACONS') }} <i class="bi bi-arrow-right"></i></a></div>
     </section>
 </article>
 @endsection

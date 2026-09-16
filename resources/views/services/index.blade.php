@@ -3,6 +3,7 @@
 @section('meta_description', 'Dịch vụ thiết kế kiến trúc, nội thất, quy hoạch và xây dựng trọn gói của ACONS.')
 
 @php
+    $pageContent = static fn (string $key, string $fallback): string => filled($siteSettings[$key] ?? null) ? (string) $siteSettings[$key] : $fallback;
     $serviceDetails = [
         'thiet-ke-kien-truc' => [
             'title' => 'Thiết kế kiến trúc chính xác cho những công trình khác biệt',
@@ -45,12 +46,12 @@
     <header class="services-hero" style="--services-hero-image: url('{{ asset('images/hero-architecture.svg') }}')" data-reveal="fade">
         <div class="container services-hero-inner">
             <div class="services-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Dịch vụ</div>
-            <div class="services-kicker services-kicker-light">Chuyên môn ACONS</div>
-            <h1>Giải pháp toàn diện<br><em>biến ý tưởng</em><br>thành hiện thực</h1>
-            <p>Từ kiến trúc, nội thất đến thi công và quy hoạch, ACONS kết nối tư duy thiết kế với năng lực triển khai để tạo nên những công trình có giá trị lâu dài.</p>
+            <div class="services-kicker services-kicker-light">{{ $pageContent('services_hero_kicker', 'Chuyên môn ACONS') }}</div>
+            <h1>{{ $pageContent('services_hero_title', 'Giải pháp toàn diện') }}<br><em>{{ $pageContent('services_hero_accent', 'biến ý tưởng thành hiện thực') }}</em></h1>
+            <p>{{ $pageContent('services_hero_description', 'Từ kiến trúc, nội thất đến thi công và quy hoạch, ACONS kết nối tư duy thiết kế với năng lực triển khai để tạo nên những công trình có giá trị lâu dài.') }}</p>
             <div class="services-hero-actions">
-                <a href="#services-overview" class="btn btn-acons">Khám phá dịch vụ <i class="bi bi-arrow-down"></i></a>
-                <a href="{{ route('contacts.create') }}" class="btn btn-outline-figma">Yêu cầu tư vấn</a>
+                <a href="#services-overview" class="btn btn-acons">{{ $pageContent('services_hero_primary_button', 'Khám phá dịch vụ') }} <i class="bi bi-arrow-down"></i></a>
+                <a href="{{ route('contacts.create') }}" class="btn btn-outline-figma">{{ $pageContent('services_hero_secondary_button', 'Yêu cầu tư vấn') }}</a>
             </div>
             <div class="services-hero-stats" aria-label="Năng lực dịch vụ ACONS">
                 <div><strong>{{ $services->count() }}</strong><span>Nhóm dịch vụ</span></div>
@@ -65,10 +66,10 @@
         <div class="container">
             <div class="services-heading-split">
                 <div>
-                    <div class="services-kicker">Năng lực chuyên môn</div>
-                    <h2>Hệ dịch vụ<br>được tích hợp</h2>
+                    <div class="services-kicker">{{ $pageContent('services_overview_kicker', 'Năng lực chuyên môn') }}</div>
+                    <h2>{{ $pageContent('services_overview_title', 'Hệ dịch vụ được tích hợp') }}</h2>
                 </div>
-                <p>ACONS cung cấp một hệ giải pháp liên kết chặt chẽ, hỗ trợ dự án từ nghiên cứu ban đầu đến thiết kế, triển khai và hoàn thiện.</p>
+                <p>{{ $pageContent('services_overview_description', 'ACONS cung cấp một hệ giải pháp liên kết chặt chẽ, hỗ trợ dự án từ nghiên cứu ban đầu đến thiết kế, triển khai và hoàn thiện.') }}</p>
             </div>
 
             <div class="services-card-grid">
@@ -90,8 +91,8 @@
     @if($services->isNotEmpty())
         <section class="services-deliver-intro" data-reveal="fade-up">
             <div class="container">
-                <div class="services-kicker">Chi tiết dịch vụ</div>
-                <h2>ACONS mang đến điều gì?</h2>
+                <div class="services-kicker">{{ $pageContent('services_detail_kicker', 'Chi tiết dịch vụ') }}</div>
+                <h2>{{ $pageContent('services_detail_title', 'ACONS mang đến điều gì?') }}</h2>
             </div>
         </section>
 
@@ -140,8 +141,8 @@
 
     <section class="services-difference" data-reveal="fade-up">
         <div class="container">
-            <div class="services-kicker services-kicker-centered">Khác biệt ACONS</div>
-            <h2>Vì sao khách hàng chọn ACONS?</h2>
+            <div class="services-kicker services-kicker-centered">{{ $pageContent('services_difference_kicker', 'Khác biệt ACONS') }}</div>
+            <h2>{{ $pageContent('services_difference_title', 'Vì sao khách hàng chọn ACONS?') }}</h2>
             <div class="services-benefit-grid">
                 <article><span>01</span><i class="bi bi-award"></i><h3>Chuyên môn vững vàng</h3><p>Đội ngũ đa chuyên môn hiểu cả tư duy thiết kế lẫn yêu cầu triển khai thực tế.</p></article>
                 <article><span>02</span><i class="bi bi-bullseye"></i><h3>Tập trung tính khả thi</h3><p>Mọi giải pháp đều được kiểm chứng bằng công năng, ngân sách và phương án thi công.</p></article>
@@ -184,8 +185,8 @@
 
     <section class="services-process" data-reveal="fade-up">
         <div class="container">
-            <div class="services-kicker services-kicker-centered">Cách chúng tôi làm việc</div>
-            <h2>Quy trình triển khai</h2>
+            <div class="services-kicker services-kicker-centered">{{ $pageContent('services_process_kicker', 'Cách chúng tôi làm việc') }}</div>
+            <h2>{{ $pageContent('services_process_title', 'Quy trình triển khai') }}</h2>
             <div class="services-process-track">
                 @foreach([
                     ['Khám phá', 'Tìm hiểu mục tiêu, bối cảnh và nhu cầu sử dụng'],
@@ -209,9 +210,9 @@
         <div class="container">
             <div class="services-technology-grid">
                 <div>
-                    <div class="services-kicker services-kicker-light">Đổi mới</div>
-                    <h2>Thiết kế được hỗ trợ<br>bởi công nghệ</h2>
-                    <p>ACONS sử dụng công nghệ như một công cụ để kiểm chứng ý tưởng, phối hợp hồ sơ và giúp khách hàng hình dung không gian trước khi thi công.</p>
+                    <div class="services-kicker services-kicker-light">{{ $pageContent('services_technology_kicker', 'Đổi mới') }}</div>
+                    <h2>{{ $pageContent('services_technology_title', 'Thiết kế được hỗ trợ bởi công nghệ') }}</h2>
+                    <p>{{ $pageContent('services_technology_description', 'ACONS sử dụng công nghệ như một công cụ để kiểm chứng ý tưởng, phối hợp hồ sơ và giúp khách hàng hình dung không gian trước khi thi công.') }}</p>
                 </div>
                 <div class="services-tech-cards">
                     <article><i class="bi bi-box"></i><h3>Mô hình hóa &amp; BIM</h3><p>Phối hợp mô hình, rà soát xung đột và quản lý thay đổi trong hồ sơ.</p><span>Phối hợp · Kiểm tra · Bàn giao</span></article>
@@ -229,8 +230,8 @@
 
     <section class="services-partners" data-reveal="fade">
         <div class="container">
-            <div class="services-kicker services-kicker-centered">Khách hàng &amp; đối tác</div>
-            <h2>Hệ sinh thái đồng hành</h2>
+            <div class="services-kicker services-kicker-centered">{{ $pageContent('services_partners_kicker', 'Khách hàng & đối tác') }}</div>
+            <h2>{{ $pageContent('services_partners_title', 'Hệ sinh thái đồng hành') }}</h2>
             <div class="services-partner-grid">
                 @forelse($partners as $partner)
                     <div>
@@ -255,9 +256,9 @@
     <section class="services-faq" data-reveal="fade-up">
         <div class="container services-faq-grid">
             <div>
-                <div class="services-kicker">Câu hỏi thường gặp</div>
-                <h2>Bạn đang cần<br>làm rõ điều gì?</h2>
-                <p>Trao đổi trực tiếp với đội ngũ ACONS để nhận tư vấn phù hợp với loại hình và giai đoạn dự án của bạn.</p>
+                <div class="services-kicker">{{ $pageContent('services_faq_kicker', 'Câu hỏi thường gặp') }}</div>
+                <h2>{{ $pageContent('services_faq_title', 'Bạn đang cần làm rõ điều gì?') }}</h2>
+                <p>{{ $pageContent('services_faq_description', 'Trao đổi trực tiếp với đội ngũ ACONS để nhận tư vấn phù hợp với loại hình và giai đoạn dự án của bạn.') }}</p>
                 <a href="{{ route('contacts.create') }}" class="btn btn-acons">Liên hệ ngay <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="accordion services-faq-accordion" id="servicesFaqAccordion">
@@ -279,11 +280,11 @@
 
     <section class="services-final-cta" data-reveal="fade-up">
         <div class="container">
-            <div class="services-kicker services-kicker-light">Bắt đầu cùng ACONS</div>
-            <h2>Sẵn sàng cho<br>dự án tiếp theo?</h2>
-            <p>Hãy chia sẻ mục tiêu của bạn. Đội ngũ ACONS sẽ đề xuất phạm vi dịch vụ và hướng triển khai phù hợp.</p>
+            <div class="services-kicker services-kicker-light">{{ $pageContent('services_cta_kicker', 'Bắt đầu cùng ACONS') }}</div>
+            <h2>{{ $pageContent('services_cta_title', 'Sẵn sàng cho dự án tiếp theo?') }}</h2>
+            <p>{{ $pageContent('services_cta_description', 'Hãy chia sẻ mục tiêu của bạn để đội ngũ ACONS đề xuất phạm vi dịch vụ phù hợp.') }}</p>
             <div class="services-final-actions">
-                <a href="{{ route('contacts.create') }}" class="btn services-cta-light">Gửi yêu cầu tư vấn <i class="bi bi-arrow-right"></i></a>
+                <a href="{{ route('contacts.create') }}" class="btn services-cta-light">{{ $pageContent('services_cta_primary_button', 'Nhận tư vấn') }} <i class="bi bi-arrow-right"></i></a>
                 <a href="{{ route('projects.index') }}" class="btn services-cta-outline">Xem dự án ACONS</a>
             </div>
         </div>

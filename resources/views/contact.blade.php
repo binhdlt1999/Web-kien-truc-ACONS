@@ -3,6 +3,7 @@
 @section('meta_description', 'Liên hệ ACONS để được tư vấn thiết kế kiến trúc, nội thất và xây dựng.')
 
 @php
+    $pageContent = static fn (string $key, string $fallback): string => filled($siteSettings[$key] ?? null) ? (string) $siteSettings[$key] : $fallback;
     $companyName = $siteSettings['company_name'] ?? 'ACONS';
     $address = $siteSettings['address'] ?? 'Văn phòng ACONS, Việt Nam';
     $hotline = $siteSettings['hotline'] ?? '0900 000 000';
@@ -16,12 +17,12 @@
     <header class="contact-hero" style="--contact-hero-image: url('{{ asset('images/hero-architecture.svg') }}')" data-reveal="fade">
         <div class="container contact-hero-inner">
             <div class="contact-breadcrumb"><a href="{{ route('home') }}">Trang chủ</a><span>/</span>Liên hệ</div>
-            <div class="contact-kicker contact-kicker-light">Kết nối cùng ACONS</div>
-            <h1>Cùng kiến tạo một công trình<br><em>khác biệt</em> và bền vững</h1>
-            <p>Chia sẻ với đội ngũ ACONS về dự án, nhu cầu hợp tác hoặc câu chuyện không gian mà bạn đang ấp ủ.</p>
+            <div class="contact-kicker contact-kicker-light">{{ $pageContent('contact_hero_kicker', 'Kết nối cùng ACONS') }}</div>
+            <h1>{{ $pageContent('contact_hero_title', 'Cùng bắt đầu một công trình mới') }}</h1>
+            <p>{{ $pageContent('contact_hero_description', 'Chia sẻ nhu cầu của bạn để đội ngũ ACONS tư vấn định hướng phù hợp cho công trình đang ấp ủ.') }}</p>
             <div class="contact-hero-actions">
-                <a href="#contact-form" class="btn btn-acons">Liên hệ ngay <i class="bi bi-arrow-down"></i></a>
-                <a href="#contact-services" class="btn btn-outline-figma">Chọn dịch vụ tư vấn</a>
+                <a href="#contact-form" class="btn btn-acons">{{ $pageContent('contact_hero_primary_button', 'Liên hệ ngay') }} <i class="bi bi-arrow-down"></i></a>
+                <a href="#contact-services" class="btn btn-outline-figma">{{ $pageContent('contact_hero_secondary_button', 'Chọn dịch vụ tư vấn') }}</a>
             </div>
             <div class="contact-hero-stats" aria-label="Năng lực ACONS">
                 <div><strong>{{ $siteSettings['project_count'] ?? '120' }}+</strong><span>Dự án bàn giao</span></div>
@@ -65,9 +66,9 @@
 
     <section class="contact-services" id="contact-services" data-reveal="fade-up">
         <div class="container">
-            <div class="contact-kicker">Dịch vụ</div>
-            <h2>Bạn đang quan tâm đến điều gì?</h2>
-            <p>Chọn một dịch vụ để chúng tôi chuyển yêu cầu của bạn đến đúng nhóm chuyên môn.</p>
+            <div class="contact-kicker">{{ $pageContent('contact_services_kicker', 'Dịch vụ') }}</div>
+            <h2>{{ $pageContent('contact_services_title', 'Bạn đang quan tâm đến điều gì?') }}</h2>
+            <p>{{ $pageContent('contact_services_description', 'Chọn một dịch vụ để chúng tôi chuyển yêu cầu của bạn đến đúng nhóm chuyên môn.') }}</p>
             <div class="contact-service-grid">
                 @foreach($services as $service)
                     <button type="button" class="contact-service-option" data-contact-service="{{ $service->id }}" aria-pressed="false">
@@ -84,9 +85,9 @@
         <div class="container">
             <div class="contact-inquiry-grid">
                 <div class="contact-inquiry-intro">
-                    <div class="contact-kicker">Gửi yêu cầu tư vấn</div>
-                    <h2>Hãy kể chúng tôi<br>về dự án của bạn</h2>
-                    <p>Chia sẻ nhu cầu thiết kế, phạm vi công việc hoặc mong muốn của bạn. Đội ngũ ACONS sẽ xem xét kỹ và phản hồi bằng một hướng tiếp cận phù hợp.</p>
+                    <div class="contact-kicker">{{ $pageContent('contact_form_kicker', 'Gửi yêu cầu tư vấn') }}</div>
+                    <h2>{{ $pageContent('contact_form_title', 'Hãy kể chúng tôi về dự án của bạn') }}</h2>
+                    <p>{{ $pageContent('contact_form_description', 'Chia sẻ nhu cầu thiết kế, phạm vi công việc hoặc mong muốn của bạn. Đội ngũ ACONS sẽ xem xét kỹ và phản hồi bằng một hướng tiếp cận phù hợp.') }}</p>
                     <ul>
                         <li><i class="bi bi-check2"></i> Phản hồi trong vòng 24 giờ làm việc</li>
                         <li><i class="bi bi-check2"></i> Có chuyên viên phụ trách xuyên suốt</li>
@@ -122,8 +123,8 @@
             @endif
         </div>
         <div class="contact-location-content">
-            <div class="contact-kicker">Tìm chúng tôi</div>
-            <h2>Văn phòng ACONS</h2>
+            <div class="contact-kicker">{{ $pageContent('contact_location_kicker', 'Tìm chúng tôi') }}</div>
+            <h2>{{ $pageContent('contact_location_title', 'Văn phòng ACONS') }}</h2>
             <dl>
                 <div><dt><i class="bi bi-geo-alt"></i> Địa chỉ</dt><dd>{{ $address }}</dd></div>
                 <div><dt><i class="bi bi-clock"></i> Giờ đón khách</dt><dd>{{ $workingHours }}</dd></div>
@@ -137,8 +138,8 @@
         <div class="container">
             <div class="contact-why-grid">
                 <div>
-                    <div class="contact-kicker">Vì sao chọn ACONS</div>
-                    <h2>Đối tác phù hợp<br>cho một công trình<br>khác biệt</h2>
+                    <div class="contact-kicker">{{ $pageContent('contact_why_kicker', 'Vì sao chọn ACONS') }}</div>
+                    <h2>{{ $pageContent('contact_why_title', 'Đối tác phù hợp cho một công trình khác biệt') }}</h2>
                 </div>
                 <div class="contact-benefit-grid">
                     <article><i class="bi bi-people"></i><h3>Đội ngũ đa chuyên môn</h3><p>Kiến trúc, nội thất và kỹ thuật phối hợp trên cùng một định hướng.</p></article>
@@ -154,9 +155,9 @@
         <div class="container">
             <div class="contact-faq-grid">
                 <div>
-                    <div class="contact-kicker">Câu hỏi thường gặp</div>
-                    <h2>Những điều bạn<br>có thể muốn biết</h2>
-                    <p>Nếu chưa tìm thấy câu trả lời phù hợp, hãy gửi email hoặc gọi trực tiếp cho đội ngũ ACONS.</p>
+                    <div class="contact-kicker">{{ $pageContent('contact_faq_kicker', 'Câu hỏi thường gặp') }}</div>
+                    <h2>{{ $pageContent('contact_faq_title', 'Những điều bạn có thể muốn biết') }}</h2>
+                    <p>{{ $pageContent('contact_faq_description', 'Nếu chưa tìm thấy câu trả lời phù hợp, hãy gửi email hoặc gọi trực tiếp cho đội ngũ ACONS.') }}</p>
                     <a href="mailto:{{ $email }}">Gửi email cho chúng tôi <i class="bi bi-arrow-right"></i></a>
                 </div>
                 <div class="accordion contact-faq-accordion" id="contactFaqAccordion">
@@ -184,11 +185,11 @@
 
     <section class="contact-final-cta" data-reveal="fade-up">
         <div class="container">
-            <h2>Sẵn sàng bắt đầu<br>dự án tiếp theo?</h2>
-            <p>Đội ngũ ACONS sẵn sàng cùng bạn biến ý tưởng thành một không gian có giá trị lâu dài.</p>
+            <h2>{{ $pageContent('contact_cta_title', 'Sẵn sàng bắt đầu dự án tiếp theo?') }}</h2>
+            <p>{{ $pageContent('contact_cta_description', 'Đội ngũ ACONS sẵn sàng cùng bạn biến ý tưởng thành một không gian có giá trị lâu dài.') }}</p>
             <div>
-                <a href="#contact-form" class="btn contact-cta-light">Đặt lịch tư vấn <i class="bi bi-arrow-up-right"></i></a>
-                <a href="{{ route('projects.index') }}" class="btn contact-cta-outline">Khám phá dự án</a>
+                <a href="#contact-form" class="btn contact-cta-light">{{ $pageContent('contact_cta_primary_button', 'Đặt lịch tư vấn') }} <i class="bi bi-arrow-up-right"></i></a>
+                <a href="{{ route('projects.index') }}" class="btn contact-cta-outline">{{ $pageContent('contact_cta_secondary_button', 'Khám phá dự án') }}</a>
             </div>
         </div>
     </section>
