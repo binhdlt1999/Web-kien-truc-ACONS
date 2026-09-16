@@ -21,7 +21,7 @@
             'title' => $homeContent('home_hero_1_title', 'Kiến tạo không gian'),
             'accent' => $homeContent('home_hero_1_accent', 'vượt thời gian'),
             'description' => $homeContent('home_hero_1_description', $siteSettings['hero_subtitle'] ?? 'ACONS đồng hành từ ý tưởng thiết kế đến thi công hoàn thiện, kiến tạo những công trình giàu bản sắc và bền vững.'),
-            'primary_label' => $homeContent('home_hero_1_button', 'Khám phá dự án'),
+            'primary_label' => 'Khám phá dự án',
             'primary_url' => route('projects.index'),
         ],
         [
@@ -29,7 +29,7 @@
             'title' => $homeContent('home_hero_2_title', 'Thiết kế đồng bộ'),
             'accent' => $homeContent('home_hero_2_accent', 'thi công chuẩn xác'),
             'description' => $homeContent('home_hero_2_description', 'Một đội ngũ xuyên suốt từ kiến trúc, nội thất đến kỹ thuật giúp công trình giữ trọn ý tưởng, chất lượng và tiến độ.'),
-            'primary_label' => $homeContent('home_hero_2_button', 'Xem dịch vụ'),
+            'primary_label' => 'Xem dịch vụ',
             'primary_url' => route('services.index'),
         ],
         [
@@ -37,7 +37,7 @@
             'title' => $homeContent('home_hero_3_title', 'Mỗi công trình'),
             'accent' => $homeContent('home_hero_3_accent', 'một bản sắc riêng'),
             'description' => $homeContent('home_hero_3_description', 'Chúng tôi đặt con người và bối cảnh làm trung tâm để mỗi không gian vừa đẹp, vừa bền vững và thực sự thuộc về chủ nhân.'),
-            'primary_label' => $homeContent('home_hero_3_button', 'Xem hồ sơ năng lực'),
+            'primary_label' => 'Xem hồ sơ năng lực',
             'primary_url' => route('about.index'),
         ],
     ])->map(function (array $slide, int $index) use ($heroProjects, $heroFallbackImages): array {
