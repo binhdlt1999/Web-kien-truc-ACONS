@@ -329,7 +329,7 @@
 <section class="home-contact-cta">
     <div class="container">
         <div class="contact-orbit">
-            <div class="contact-orbit-mark" aria-hidden="true">A</div>
+            <div class="contact-orbit-mark" style="--contact-orbit-logo: url('{{ asset('images/acons-symbol.png') }}')" aria-hidden="true"></div>
             <div class="home-kicker home-kicker-centered" data-reveal="fade">Bắt đầu một công trình mới</div>
             <h2 data-reveal="fade-up" style="--reveal-delay: 80ms">Cùng ACONS xây dựng<br><span class="text-sky">không gian tương lai</span></h2>
             <p data-reveal="fade-up" style="--reveal-delay: 160ms">Chia sẻ nhu cầu của bạn, đội ngũ ACONS sẽ liên hệ để tư vấn định hướng phù hợp cho công trình.</p>

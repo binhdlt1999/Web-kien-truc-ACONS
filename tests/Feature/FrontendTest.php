@@ -23,6 +23,7 @@ class FrontendTest extends TestCase
             ->assertSee('data-bs-interval="6500"', false)
             ->assertSee('data-reveal="fade-up"', false)
             ->assertSee('data-reveal="fade"', false)
+            ->assertSee('images/acons-symbol.png', false)
             ->assertSee('Kiến tạo không gian')
             ->assertSee('Thiết kế đồng bộ')
             ->assertSee('Mỗi công trình');

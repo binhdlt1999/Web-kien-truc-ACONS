@@ -24,9 +24,9 @@
     --text-4xl: 2.125rem;
     --text-5xl: 2.5rem;
     --text-display: 3.1875rem;
-    --section-space-sm: clamp(3.75rem, 5vw, 6rem);
-    --section-space: clamp(4.75rem, 7vw, 8rem);
-    --section-space-lg: clamp(5.5rem, 8vw, 9rem);
+    --section-space-sm: clamp(2.75rem, 3.5vw, 4rem);
+    --section-space: clamp(3.5rem, 5vw, 5.5rem);
+    --section-space-lg: clamp(4.25rem, 6vw, 6.5rem);
 }
 
 html { scroll-behavior: smooth; }
@@ -709,27 +709,20 @@ img { max-width: 100%; }
     padding: 6rem 6rem 4rem;
     text-align: center;
 }
-.contact-orbit::before {
-    position: absolute;
-    z-index: 0;
-    width: min(820px, 88vw);
-    aspect-ratio: 1;
-    content: '';
-    border-radius: 50%;
-    background: rgba(201, 83, 96, .64);
-}
 .contact-orbit > * { position: relative; z-index: 2; }
 .contact-orbit-mark {
     position: absolute;
     z-index: 1;
     top: 50%;
     left: 50%;
-    color: rgba(255, 255, 255, .92);
-    font-family: var(--acons-serif);
-    font-size: min(44rem, 66vw);
-    font-weight: 400;
-    line-height: 1;
+    width: min(640px, 70vw);
+    aspect-ratio: 1;
+    background: var(--acons-red);
+    opacity: .38;
     transform: translate(-50%, -49%);
+    pointer-events: none;
+    -webkit-mask: var(--contact-orbit-logo) center / contain no-repeat;
+    mask: var(--contact-orbit-logo) center / contain no-repeat;
 }
 .contact-orbit .home-kicker { margin-bottom: 1rem; }
 .contact-orbit h2 { margin: 0; font-family: var(--acons-serif); font-size: clamp(3.3rem, 6.3vw, 6.4rem); font-weight: 400; line-height: .92; letter-spacing: -.035em; }
@@ -1588,8 +1581,7 @@ img { max-width: 100%; }
     .case-study-grid { grid-template-columns: 1fr; }
     .case-study-card:last-child { grid-column: auto; max-width: none; }
     .contact-orbit { width: 100%; min-height: 680px; padding: 3rem 1rem; }
-    .contact-orbit::before { width: 115vw; }
-    .contact-orbit-mark { font-size: 100vw; }
+    .contact-orbit-mark { width: 90vw; }
     .contact-orbit h2 { font-size: clamp(2.8rem, 13vw, 4.5rem); }
     .contact-orbit-details { grid-template-columns: 1fr; gap: 1rem; margin-top: 2.5rem; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 1.5rem; }
@@ -2697,88 +2689,131 @@ main figcaption span {
 .project-timeline { padding: var(--section-space) 0 0; }
 .project-scope-grid { padding-bottom: var(--section-space); }
 .project-team { padding-top: var(--section-space); }
-.contact-services { padding: var(--section-space) 0 2.5rem; }
+.contact-services { padding: var(--section-space) 0 2rem; }
 .contact-inquiry { padding: var(--section-space) 0 var(--section-space-lg); }
-.services-deliver-intro { padding: var(--section-space) 0 2.5rem; }
+.services-deliver-intro { padding: var(--section-space) 0 2rem; }
 .services-delivery-row { padding: var(--section-space-sm) 0; }
 .services-technology { padding: var(--section-space) 0 0; }
-.resources-directory { padding-bottom: 3rem; }
-.page-hero { padding: 8.5rem 0 4rem; }
+.resources-directory { padding-bottom: 2.25rem; }
+.page-hero { padding: 7.5rem 0 3.25rem; }
 
-.home-kicker { margin-bottom: 2rem; }
-.home-section-heading { margin-bottom: 3rem; }
-.home-difference .home-display-heading { margin-bottom: 3.5rem; }
+.home-kicker { margin-bottom: 1.4rem; }
+.home-section-heading { margin-bottom: 2.25rem; }
+.home-difference .home-display-heading { margin-bottom: 2.5rem; }
 .project-section-heading,
-.editorial-heading-split { margin-bottom: clamp(2.75rem, 4vw, 4.5rem); }
+.editorial-heading-split { margin-bottom: clamp(2rem, 3vw, 3rem); }
 .project-scale h2,
 .project-technical h2,
-.project-timeline h2 { margin-bottom: 2.5rem; }
+.project-timeline h2 { margin-bottom: 1.8rem; }
 
-.home-hero { min-height: 620px; }
+.home-hero {
+    height: clamp(560px, calc(82svh - 88px), 660px);
+    min-height: 560px;
+}
 .project-detail-hero {
-    min-height: clamp(650px, calc(100vh - 88px), 740px);
+    min-height: clamp(590px, calc(82vh - 88px), 680px);
 }
 .contact-hero {
-    min-height: clamp(620px, calc(100vh - 88px), 720px);
+    min-height: clamp(570px, calc(82vh - 88px), 660px);
 }
 .services-hero {
-    min-height: clamp(650px, calc(100vh - 88px), 740px);
+    min-height: clamp(600px, calc(82vh - 88px), 690px);
 }
 .editorial-hero {
-    min-height: clamp(620px, calc(100vh - 88px), 720px);
+    min-height: clamp(570px, calc(82vh - 88px), 660px);
+}
+
+.achievement-item {
+    min-height: 180px;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+}
+.difference-grid { row-gap: 3.25rem; }
+.about-story-visual { margin-top: 4.25rem; }
+.about-timeline { margin-top: 3.5rem; }
+.about-partner-grid { margin-top: 3rem; }
+.services-project-grid,
+.services-process-track,
+.services-tech-stats { margin-top: 3rem; }
+.services-partner-grid { margin-top: 2.5rem; }
+.project-blueprint-thumb { margin-top: 3rem; }
+.project-outcome-grid { row-gap: 3.5rem; }
+.resources-news-strip .container {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
 }
 
 @media (min-width: 992px) {
-    .home-service-card { min-height: 350px; }
-    .home-project-grid { min-height: 600px; }
-    .contact-orbit { min-height: 700px; }
+    .home-service-card { min-height: 320px; }
+    .home-project-grid { min-height: 540px; }
+    .contact-orbit { min-height: 620px; }
 
-    .project-solution-image { min-height: 640px; }
+    .project-solution-image { min-height: 560px; }
     .project-technical-card,
-    .project-technical-visual { min-height: 480px; }
-    .project-compare { min-height: 540px; }
-    .project-gallery-grid { min-height: 640px; }
-    .project-timeline-step { min-height: 275px; }
+    .project-technical-visual { min-height: 430px; }
+    .project-compare { min-height: 480px; }
+    .project-gallery-grid { min-height: 560px; }
+    .project-timeline-step { min-height: 240px; }
 
-    .contact-info-grid > div { min-height: 175px; }
-    .contact-service-option { min-height: 125px; }
+    .contact-info-grid > div { min-height: 150px; }
+    .contact-service-option { min-height: 110px; }
     .contact-location,
     .contact-location-map,
     .contact-location-map iframe,
-    .contact-map-placeholder { min-height: 520px; }
-    .contact-benefit-grid article { min-height: 185px; }
+    .contact-map-placeholder { min-height: 460px; }
+    .contact-benefit-grid article { min-height: 160px; }
 
-    .services-overview-card { min-height: 285px; }
+    .services-overview-card { min-height: 250px; }
     .services-delivery-visual,
-    .services-delivery-visual img { min-height: 500px; }
-    .services-benefit-grid article { min-height: 230px; }
-    .services-project-grid a { min-height: 380px; }
-    .services-tech-cards article { min-height: 190px; }
+    .services-delivery-visual img { min-height: 440px; }
+    .services-benefit-grid article { min-height: 200px; }
+    .services-project-grid a,
+    .services-project-grid img { height: 340px; min-height: 340px; }
+    .services-tech-cards article { min-height: 165px; }
 
-    .editorial-card { min-height: 260px; }
-    .editorial-process article { min-height: 180px; }
-    .editorial-project-grid a { min-height: 380px; }
-    .epsilon-blueprint { min-height: 480px; }
-    .epsilon-ai-cards article { min-height: 225px; }
-    .resources-directory-grid > a { min-height: 145px; }
+    .editorial-card { min-height: 230px; }
+    .editorial-process article { min-height: 160px; }
+    .editorial-project-grid a { min-height: 340px; }
+    .epsilon-blueprint { min-height: 430px; }
+    .epsilon-ai-cards article { min-height: 195px; }
+    .resources-directory-grid > a { min-height: 125px; }
     .resources-featured-article,
-    .resources-featured-article > img { min-height: 380px; }
-    .resources-article-grid article { min-height: 300px; }
-    .about-team-board > div { min-height: 185px; }
-    .about-voice-grid blockquote { min-height: 260px; }
-    .about-partner-grid > div { min-height: 100px; }
+    .resources-featured-article > img { min-height: 340px; }
+    .resources-article-grid article { min-height: 270px; }
+    .about-team-board > div { min-height: 165px; }
+    .about-voice-grid blockquote { min-height: 230px; }
+    .about-partner-grid > div { min-height: 90px; }
 }
 
 @media (max-width: 575.98px) {
-    .home-hero { min-height: 590px; }
+    .home-hero { height: 540px; min-height: 540px; }
     .project-detail-hero,
     .contact-hero,
-    .editorial-hero { min-height: 680px; }
-    .services-hero { min-height: 710px; }
-    .page-hero { padding: 7.5rem 0 3.25rem; }
+    .editorial-hero { min-height: 620px; }
+    .services-hero { min-height: 650px; }
+    .page-hero { padding: 6.75rem 0 2.75rem; }
     .home-section-heading,
     .project-section-heading,
-    .editorial-heading-split { margin-bottom: 2.5rem; }
+    .editorial-heading-split { margin-bottom: 2rem; }
+    .achievement-item { min-height: 150px; padding-top: 1.15rem; padding-bottom: 1.15rem; }
+    .home-service-card { min-height: 290px; }
+    .home-project-card,
+    .home-project-card.project-layout-1,
+    .home-project-card.project-layout-2,
+    .home-project-card.project-layout-3,
+    .home-project-card.project-layout-4 { min-height: 270px; }
+    .contact-orbit { min-height: 600px; padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .services-overview-card { min-height: 220px; }
+    .services-delivery-visual img { min-height: 300px; }
+    .services-project-grid a,
+    .services-project-grid img { height: 280px; min-height: 280px; }
+    .services-tech-cards article { min-height: 185px; }
+    .editorial-card { min-height: 225px; }
+    .epsilon-blueprint { min-height: 340px; }
+    .editorial-project-grid a,
+    .editorial-project-grid a:last-child:nth-child(odd) { min-height: 320px; }
+    .about-story-visual { margin-top: 2.25rem; }
+    .about-timeline { margin-top: 2.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
