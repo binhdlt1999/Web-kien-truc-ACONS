@@ -24,12 +24,7 @@ class SettingController extends Controller
         'google_maps_embed_url' => ['nullable', 'url', 'max:1000'],
         'default_meta_title' => ['nullable', 'string', 'max:70'],
         'default_meta_description' => ['nullable', 'string', 'max:170'],
-        'hero_title' => ['nullable', 'string', 'max:255'],
-        'hero_subtitle' => ['nullable', 'string', 'max:500'],
         'hero_video_url' => ['nullable', 'url', 'max:1000'],
-        'project_count' => ['nullable', 'integer', 'min:0'],
-        'experience_years' => ['nullable', 'integer', 'min:0'],
-        'team_count' => ['nullable', 'integer', 'min:0'],
     ];
 
     public function edit(): View
@@ -42,12 +37,17 @@ class SettingController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $rules = collect(self::RULES)->mapWithKeys(fn ($rule, $key) => ["settings.{$key}" => $rule])->all();
-        $rules['logo'] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,svg', 'max:4096'];
+        $rules['logo'] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'];
         $validated = $request->validate($rules);
 
-        foreach ($validated['settings'] ?? [] as $key => $value) {
+        foreach (array_keys(self::RULES) as $key) {
+            if (! array_key_exists($key, $validated['settings'] ?? [])) {
+                continue;
+            }
+
+            $value = $validated['settings'][$key];
             Setting::updateOrCreate(['key' => $key], [
-                'value' => $value,
+                'value' => $value === '' ? null : $value,
                 'group' => str_contains($key, 'meta') ? 'seo' : 'general',
                 'type' => str_contains($key, '_url') ? 'url' : 'text',
                 'is_public' => true,
