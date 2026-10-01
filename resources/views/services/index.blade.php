@@ -292,4 +292,3 @@
     </section>
 </article>
 @endsection
-check thug
