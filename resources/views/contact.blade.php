@@ -25,9 +25,9 @@
                 <a href="#contact-services" class="btn btn-outline-figma">{{ $pageContent('contact_hero_secondary_button', 'Chọn dịch vụ tư vấn') }}</a>
             </div>
             <div class="contact-hero-stats" aria-label="Năng lực ACONS">
-                <div><strong>{{ $siteSettings['project_count'] ?? '120' }}+</strong><span>Dự án bàn giao</span></div>
-                <div><strong>{{ $siteSettings['experience_years'] ?? '10' }}+</strong><span>Năm kinh nghiệm</span></div>
-                <div><strong>{{ $siteSettings['team_count'] ?? '35' }}+</strong><span>Nhân sự chuyên môn</span></div>
+                <div><strong>{{ $pageContent('home_stat_4_value', '120+') }}</strong><span>Dự án bàn giao</span></div>
+                <div><strong>{{ $pageContent('home_stat_1_value', '10+') }}</strong><span>Năm kinh nghiệm</span></div>
+                <div><strong>{{ $pageContent('home_stat_2_value', '35+') }}</strong><span>Nhân sự chuyên môn</span></div>
                 <div><strong>04</strong><span>Dịch vụ cốt lõi</span></div>
             </div>
         </div>

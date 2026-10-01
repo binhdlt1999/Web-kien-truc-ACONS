@@ -192,4 +192,14 @@ $(function () {
             galleryModal.show();
         });
     }
+
+    const parametricBuildSection = document.querySelector('[data-build-sequence]');
+    if (parametricBuildSection) {
+        import('./parametric-build.js')
+            .then(({ initParametricBuild }) => initParametricBuild(parametricBuildSection))
+            .catch((error) => {
+                parametricBuildSection.classList.add('is-unavailable');
+                console.warn('ACONS parametric build module could not load.', error);
+            });
+    }
 });

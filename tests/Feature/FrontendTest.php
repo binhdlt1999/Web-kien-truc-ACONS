@@ -23,10 +23,29 @@ class FrontendTest extends TestCase
             ->assertSee('data-bs-interval="6500"', false)
             ->assertSee('data-reveal="fade-up"', false)
             ->assertSee('data-reveal="fade"', false)
+            ->assertSee('class="site-brand-default"', false)
+            ->assertSee('class="site-brand-compact"', false)
             ->assertSee('images/acons-symbol.png', false)
             ->assertSee('Kiến tạo không gian')
             ->assertSee('Thiết kế đồng bộ')
             ->assertSee('Mỗi công trình');
+    }
+
+    public function test_homepage_renders_parametric_build_sequence(): void
+    {
+        $this->get(route('home'))
+            ->assertOk()
+            ->assertSee('data-build-sequence', false)
+            ->assertSee('data-build-canvas', false)
+            ->assertSee('data-build-progress', false)
+            ->assertSeeInOrder([
+                'Móng &amp; nền',
+                'Khung chính',
+                'Sàn &amp; thang',
+                'Bao che',
+                'Mái',
+                'Hoàn thiện',
+            ], false);
     }
 
     public function test_epsilon_page_renders_technology_content(): void

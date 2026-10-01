@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'ACONS | Kiến trúc và Xây dựng')
-
 @php
+    $homepageMetaTitle = filled($siteSettings['default_meta_title'] ?? null)
+        ? (string) $siteSettings['default_meta_title']
+        : 'ACONS | Kiến trúc và Xây dựng';
+    $homepageMetaDescription = filled($siteSettings['default_meta_description'] ?? null)
+        ? (string) $siteSettings['default_meta_description']
+        : 'ACONS cung cấp giải pháp thiết kế kiến trúc, nội thất và thi công xây dựng trọn gói.';
     $homeContent = static function (string $key, string $fallback) use ($siteSettings): string {
         $value = $siteSettings[$key] ?? null;
 
@@ -20,7 +24,7 @@
             'eyebrow' => $homeContent('home_hero_1_eyebrow', 'Kiến trúc · Nội thất · Xây dựng'),
             'title' => $homeContent('home_hero_1_title', 'Kiến tạo không gian'),
             'accent' => $homeContent('home_hero_1_accent', 'vượt thời gian'),
-            'description' => $homeContent('home_hero_1_description', $siteSettings['hero_subtitle'] ?? 'ACONS đồng hành từ ý tưởng thiết kế đến thi công hoàn thiện, kiến tạo những công trình giàu bản sắc và bền vững.'),
+            'description' => $homeContent('home_hero_1_description', 'ACONS đồng hành từ ý tưởng thiết kế đến thi công hoàn thiện, kiến tạo những công trình giàu bản sắc và bền vững.'),
             'primary_label' => 'Khám phá dự án',
             'primary_url' => route('projects.index'),
         ],
@@ -57,6 +61,9 @@
         ? asset('storage/'.$innovationProject->cover_image)
         : asset('images/project-placeholder.svg');
 @endphp
+
+@section('title', $homepageMetaTitle)
+@section('meta_description', $homepageMetaDescription)
 
 @section('content')
 <section id="aconsHeroSlider" class="carousel slide carousel-fade home-hero is-progressing" data-bs-ride="carousel" data-bs-interval="6500" data-bs-pause="hover" data-bs-touch="true" aria-label="Giới thiệu ACONS">
@@ -140,10 +147,10 @@
 <section class="home-achievements" aria-label="Năng lực ACONS">
     <div class="container-fluid px-0">
         <div class="achievement-grid">
-            <div class="achievement-item" data-reveal="fade-up"><strong>{{ $homeContent('home_stat_1_value', ($siteSettings['experience_years'] ?? '10').'+') }}</strong><span>{{ $homeContent('home_stat_1_label', 'Năm kinh nghiệm') }}</span><small>{{ $homeContent('home_stat_1_note', 'Kiến tạo giá trị bền vững') }}</small></div>
-            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 80ms"><strong>{{ $homeContent('home_stat_2_value', ($siteSettings['team_count'] ?? '35').'+') }}</strong><span>{{ $homeContent('home_stat_2_label', 'Nhân sự chuyên môn') }}</span><small>{{ $homeContent('home_stat_2_note', 'Kiến trúc · Nội thất · Kỹ thuật') }}</small></div>
+            <div class="achievement-item" data-reveal="fade-up"><strong>{{ $homeContent('home_stat_1_value', '10+') }}</strong><span>{{ $homeContent('home_stat_1_label', 'Năm kinh nghiệm') }}</span><small>{{ $homeContent('home_stat_1_note', 'Kiến tạo giá trị bền vững') }}</small></div>
+            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 80ms"><strong>{{ $homeContent('home_stat_2_value', '35+') }}</strong><span>{{ $homeContent('home_stat_2_label', 'Nhân sự chuyên môn') }}</span><small>{{ $homeContent('home_stat_2_note', 'Kiến trúc · Nội thất · Kỹ thuật') }}</small></div>
             <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 160ms"><strong>{{ $homeContent('home_stat_3_value', '1.2M+') }}</strong><span>{{ $homeContent('home_stat_3_label', 'm² thiết kế') }}</span><small>{{ $homeContent('home_stat_3_note', 'Trên nhiều loại hình công trình') }}</small></div>
-            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 240ms"><strong>{{ $homeContent('home_stat_4_value', ($siteSettings['project_count'] ?? '120').'+') }}</strong><span>{{ $homeContent('home_stat_4_label', 'Dự án bàn giao') }}</span><small>{{ $homeContent('home_stat_4_note', 'Nhà ở · Thương mại · Văn phòng') }}</small></div>
+            <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 240ms"><strong>{{ $homeContent('home_stat_4_value', '120+') }}</strong><span>{{ $homeContent('home_stat_4_label', 'Dự án bàn giao') }}</span><small>{{ $homeContent('home_stat_4_note', 'Nhà ở · Thương mại · Văn phòng') }}</small></div>
             <div class="achievement-item" data-reveal="fade-up" style="--reveal-delay: 320ms"><strong>{{ $homeContent('home_stat_5_value', '100%') }}</strong><span>{{ $homeContent('home_stat_5_label', 'Quy trình kiểm soát') }}</span><small>{{ $homeContent('home_stat_5_note', 'Minh bạch chất lượng và tiến độ') }}</small></div>
         </div>
     </div>
@@ -237,6 +244,56 @@
     </div>
 </section>
 
+<section class="build-sequence" id="digital-build" data-build-sequence aria-labelledby="digital-build-title">
+    <div class="build-sequence-viewport" data-build-viewport>
+        <canvas class="build-sequence-canvas" data-build-canvas role="img" aria-label="Mô hình công trình ACONS được lắp dựng theo sáu giai đoạn thi công"></canvas>
+
+        <div class="build-sequence-topbar" aria-hidden="true">
+            <span>ACONS Digital Build</span>
+            <span><strong data-build-component-count>—</strong> cấu kiện tham số · WebGL realtime</span>
+        </div>
+
+        <div class="build-sequence-copy">
+            <div class="build-sequence-kicker">Mô phỏng trình tự thi công</div>
+            <h2 id="digital-build-title">Từ dữ liệu <span>đến công trình</span></h2>
+            <div class="build-sequence-stage-copy" aria-live="polite">
+                <div class="build-sequence-stage-meta">
+                    <span>Giai đoạn <b data-build-stage-number>01</b></span>
+                    <span data-build-stage-trade>Kết cấu nền</span>
+                </div>
+                <h3 data-build-stage-title>Móng &amp; nền</h3>
+                <p data-build-stage-description>Định vị lưới trục, đặt móng đơn và liên kết hệ giằng trước khi khóa cốt nền.</p>
+            </div>
+        </div>
+
+        <nav class="build-sequence-stages" aria-label="Các giai đoạn thi công mô phỏng">
+            <ol>
+                <li><button class="build-sequence-stage-button is-active" type="button" data-build-stage-button data-stage-title="Móng &amp; nền" data-stage-trade="Kết cấu nền" data-stage-description="Định vị lưới trục, đặt móng đơn và liên kết hệ giằng trước khi khóa cốt nền." aria-current="step"><span>01</span><strong>Móng &amp; nền</strong></button></li>
+                <li><button class="build-sequence-stage-button" type="button" data-build-stage-button data-stage-title="Khung chịu lực" data-stage-trade="Kết cấu chính" data-stage-description="Cột và dầm được lắp theo lưới module, hình thành bộ khung chịu lực cho hai tầng." aria-current="false"><span>02</span><strong>Khung chính</strong></button></li>
+                <li><button class="build-sequence-stage-button" type="button" data-build-stage-button data-stage-title="Sàn &amp; giao thông" data-stage-trade="Sàn &amp; giao thông" data-stage-description="Hệ dầm phụ, tấm sàn và cầu thang được lắp đúng thứ tự để tạo mặt bằng thi công an toàn." aria-current="false"><span>03</span><strong>Sàn &amp; thang</strong></button></li>
+                <li><button class="build-sequence-stage-button" type="button" data-build-stage-button data-stage-title="Bao che công trình" data-stage-trade="Bao che" data-stage-description="Tường đặc, mảng kính và hệ lam được đưa vào theo từng mặt đứng để kiểm soát ánh sáng." aria-current="false"><span>04</span><strong>Bao che</strong></button></li>
+                <li><button class="build-sequence-stage-button" type="button" data-build-stage-button data-stage-title="Kết cấu mái" data-stage-trade="Mái" data-stage-description="Dầm mái và các tấm che hoàn thiện đường nét kiến trúc, đồng thời bảo vệ toàn bộ không gian bên dưới." aria-current="false"><span>05</span><strong>Mái</strong></button></li>
+                <li><button class="build-sequence-stage-button" type="button" data-build-stage-button data-stage-title="Hoàn thiện &amp; cảnh quan" data-stage-trade="Hoàn thiện" data-stage-description="Sàn ngoài trời, lan can và cảnh quan kết nối công trình với không gian sử dụng thực tế." aria-current="false"><span>06</span><strong>Hoàn thiện</strong></button></li>
+            </ol>
+        </nav>
+
+        <div class="build-sequence-hint" aria-hidden="true"><i></i><span>Cuộn để xây dựng</span></div>
+
+        <div class="build-sequence-progress" data-build-progress role="progressbar" aria-label="Tiến độ lắp dựng mô hình" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span>Tiến độ mô phỏng</span>
+            <span class="build-sequence-progress-track" aria-hidden="true"></span>
+            <output class="build-sequence-progress-output" data-build-progress-value>00</output>
+        </div>
+
+        <div class="build-sequence-fallback" role="status">
+            <div>
+                <h2>Quy trình số ACONS</h2>
+                <p>Trình duyệt hiện tại không hỗ trợ mô phỏng WebGL. Nội dung dự án và các dịch vụ của ACONS vẫn hoạt động bình thường.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="home-section home-innovation">
     <div class="container">
         <div class="home-kicker home-kicker-centered" data-reveal="fade">{{ $homeContent('home_innovation_kicker', 'Đổi mới trong từng giải pháp') }}</div>
@@ -244,7 +301,7 @@
             <figure class="innovation-visual" data-reveal="fade">
                 <img src="{{ $innovationImage }}" alt="Năng lực thiết kế và triển khai của ACONS" loading="lazy">
                 <figcaption>
-                    <div><strong>{{ $siteSettings['project_count'] ?? '120' }}+</strong><span>Dự án</span></div>
+                    <div><strong>{{ $homeContent('home_stat_4_value', '120+') }}</strong><span>Dự án</span></div>
                     <div><strong>0</strong><span>Sai lệch mục tiêu</span></div>
                     <div><strong>24/7</strong><span>Phối hợp</span></div>
                     <div><strong>100%</strong><span>Kiểm soát</span></div>

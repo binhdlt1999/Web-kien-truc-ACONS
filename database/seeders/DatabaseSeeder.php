@@ -93,11 +93,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'hello@acons.vn',
             'address' => 'Văn phòng ACONS, Việt Nam',
             'working_hours' => 'Thứ 2 – Thứ 7, 08:00 – 17:30',
-            'hero_title' => 'Kiến tạo không gian sống vượt thời gian',
-            'hero_subtitle' => 'ACONS đồng hành từ ý tưởng thiết kế đến thi công hoàn thiện.',
-            'project_count' => '120',
-            'experience_years' => '10',
-            'team_count' => '35',
             'default_meta_title' => 'ACONS | Kiến trúc & Xây dựng',
             'default_meta_description' => 'ACONS cung cấp dịch vụ thiết kế kiến trúc, nội thất và xây dựng trọn gói.',
         ] as $key => $value) {

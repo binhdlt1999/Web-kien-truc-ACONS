@@ -24,11 +24,16 @@
     <nav class="navbar navbar-expand-lg fixed-top site-navbar" aria-label="Điều hướng chính" data-site-header>
         <div class="container site-navbar-inner">
             <a class="navbar-brand fw-bold" href="{{ route('home') }}" aria-label="{{ $companyName }} - Trang chủ">
-                @if(!empty($siteSettings['logo']))
-                    <img src="{{ asset('storage/'.$siteSettings['logo']) }}" alt="{{ $companyName }}" height="42">
-                @else
-                    ACONS
-                @endif
+                <span class="site-brand-default">
+                    @if(!empty($siteSettings['logo']))
+                        <img src="{{ asset('storage/'.$siteSettings['logo']) }}" alt="" height="42">
+                    @else
+                        <span>ACONS</span>
+                    @endif
+                </span>
+                <span class="site-brand-compact" aria-hidden="true">
+                    <img src="{{ asset('images/acons-symbol.png') }}" alt="" width="44" height="44">
+                </span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Mở menu">
                 <span class="navbar-toggler-icon"></span>
